@@ -16,8 +16,19 @@ namespace MovieFranchiseWebAPI.Models
 
         public MovieFranchiseContext(DbContextOptions<MovieFranchiseContext> options) : base(options)
         {
-
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //TODO: SEED DATA Character, Movie & Franchise
+
+            // modelBuilder.Entity<Character>().HasData(new Character { Id = 1, FullName = "Name Nameson", Alias = "Chad", Gender = "Male", PictureURL = "" });
+            // modelBuilder.Entity<Character>().HasData(new Character { Id = 2, FullName = "Name Nameson", Alias = "Chad", Gender = "Male", PictureURL = "" });
+            // modelBuilder.Entity<Character>().HasData(new Character { Id = 3, FullName = "Name Nameson", Alias = "Chad", Gender = "Male", PictureURL = "" });
+
+
+
+
+        }
     }
 }
