@@ -16,7 +16,7 @@ namespace MovieFranchiseWebAPI.Profiles
             CreateMap<Movie, MovieReadDTO>()
                 // turning related characters into int array
                 .ForMember(mdto => mdto.Characters, opt => opt
-                .MapFrom(m => m.Characters.Select(m => m.Id).ToArray()))
+                .MapFrom(m => m.Characters.Select(c => c.Id).ToArray()))
                 // (int) Franchise <--> FranchiseId
                 .ForMember(mdto => mdto.Franchise, opt => opt
                 .MapFrom(m => m.FranchiseId))
