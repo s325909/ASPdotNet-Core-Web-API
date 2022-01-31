@@ -29,7 +29,7 @@ namespace MovieFranchiseWebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<CharacterReadDTO>>> GetMovies() 
+        public async Task<ActionResult<IEnumerable<CharacterReadDTO>>> GetCharacters()  
         {
             return _mapper.Map<List<CharacterReadDTO>>(await _context.Movies.ToListAsync());
         }

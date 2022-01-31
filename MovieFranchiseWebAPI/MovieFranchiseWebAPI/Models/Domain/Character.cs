@@ -10,13 +10,25 @@ namespace MovieFranchiseWebAPI.Models.Domain
     [Table("Character")]
     public class Character
     {
-        // Primary Key
+        // Primary Key (Autoincremented Id)
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
+
         // Fields
         [Required]
+        [MaxLength(50, ErrorMessage = "Full name can only be 50 characters long!")]
         public string FullName { get; set; }
+
+        [MaxLength(50, ErrorMessage = "Alias can only be 50 characters long!")]
         public string Alias { get; set; }
+
+        [MaxLength(50, ErrorMessage = "Gender can only be 50 characters long!")]
         public string Gender { get; set; }
-        public string PictureURL { get; set; } 
+
+        [MaxLength(175, ErrorMessage = "Picture URL can only be 175 characters long!")]
+        public string PictureURL { get; set; }
+
+        //Relationships
+        public ICollection<Movie> Movies { get; set; } 
     }
 }
