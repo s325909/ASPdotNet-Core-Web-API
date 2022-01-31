@@ -19,7 +19,7 @@ namespace MovieFranchiseWebAPI.Models.Domain
         [MaxLength(50, ErrorMessage = "Name can only be 50 characters long!")]
         public string Name { get; set; }
 
-        [MaxLength(125, ErrorMessage = "Description can only be 125 characters long!")]
+        [MaxLength(250, ErrorMessage = "Description can only be 250 characters long!")]
         public string Description { get; set; }
 
         // Relationships
