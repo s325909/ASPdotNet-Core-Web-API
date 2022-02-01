@@ -19,7 +19,7 @@ namespace MovieFranchiseWebAPI.Models.Domain
         [MaxLength(50, ErrorMessage = "Tittle can only be 50 characters long!")]
         public string Tittle { get; set; }
 
-        [MaxLength(75, ErrorMessage = "Genre can only be 50 characters long!")]
+        [MaxLength(75, ErrorMessage = "Genre can only be 75 characters long!")]
         public string Genre { get; set; }
 
         [MaxLength(4), MinLength(4)]
@@ -35,7 +35,7 @@ namespace MovieFranchiseWebAPI.Models.Domain
         public string TrailerURL { get; set; }
 
         // Relationships
-        public int FranchiseId { get; set; }
+        public int? FranchiseId { get; set; }
         public Franchise Franchise { get; set; }
         public ICollection<Character> Characters { get; set; } 
     }

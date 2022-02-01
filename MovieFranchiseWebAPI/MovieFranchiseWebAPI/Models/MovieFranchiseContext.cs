@@ -32,12 +32,12 @@ namespace MovieFranchiseWebAPI.Models
                 modelBuilder.Entity<Movie>().HasData(mockData.Movies[i]);
 
             // seed dummy Franchise data to database table
-            for (int i = 0; i < mockData.Franchises.Count; i++)
-                modelBuilder.Entity<Franchise>().HasData(mockData.Franchises[i]);    
+            //for (int i = 0; i < mockData.Franchises.Count; i++)
+                //modelBuilder.Entity<Franchise>().HasData(mockData.Franchises[i]);    
 
+            /**
 
             // seed m2m movie-character; need to define m2m and access linking table
-            /**
             modelBuilder.Entity<Movie>()
                 .HasMany(m => m.Characters)
                 .WithMany(c => c.Movies)
@@ -47,15 +47,16 @@ namespace MovieFranchiseWebAPI.Models
                     l => l.HasOne<Movie>().WithMany().HasForeignKey("MovieId"),
                     je =>
                     {
-                        je.HasKey("CharacterId", "CoachId");
+                        je.HasKey("MovieId", "CharacterId");
                         je.HasData(
-                            new {}
-                            );
+                            new { MovieId = 1, CharacterId = 1 },
+                            new { MovieId = 2, CharacterId = 2 },
+                            new { MovieId = 2, CharacterId = 3 }
+                        );
                     }
                 );
+
             **/
-
-
         }
     }
 }
