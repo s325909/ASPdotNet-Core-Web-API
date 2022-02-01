@@ -32,10 +32,13 @@ namespace MovieFranchiseWebAPI
 
             services.AddControllers();
 
+            services.AddAutoMapper(typeof(Startup));
+
             // inject DbContext to services at startup with connectionString (defined in appsettings.json)
             services.AddDbContextPool<MovieFranchiseContext>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("MovieFranchiseContextConnectionString")));
             // services.AddScoped<IMovieFranchiseRepo, SqlMovieFranchiseData>();
+
 
             services.AddSwaggerGen(c =>
             {
