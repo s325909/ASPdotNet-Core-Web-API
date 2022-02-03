@@ -6,26 +6,30 @@ using System.Threading.Tasks;
 
 namespace MovieFranchiseWebAPI.Models
 {
-    public class MovieFranchiseMockData 
+    public class MovieFranchiseMockData
     {
-        public readonly List<Franchise> Franchises = new()   
+        public readonly List<Franchise> Franchises = new()
         {
             new Franchise()
             {
+                Id = 1,
                 Name = "John Wick",
                 Description = "John Wick is an American neo-noir action-thriller media franchise created by screenwriter Derek Kolstad and starring Keanu Reeves as John Wick, a former hitman who is forced back into the criminal underworld he abandoned."
             },
             new Franchise()
             {
+                Id = 2,
                 Name = "The Marvel Cinematic Universe",
                 Description = "The Marvel Cinematic Universe (MCU) is an American media franchise and shared universe centered on a series of superhero films produced by Marvel Studios."
             }
         };
 
-        public readonly List<Movie> Movies= new()  
+        public readonly List<Movie> Movies = new()
         {
             new Movie()
             {
+                Id = 1,
+                FranchiseId = 1,
                 Tittle = "John Wick: Chapter 4",
                 Genre = "Action, Crime, Drama, Thriller",
                 ReleaseYear = 2023,
@@ -35,6 +39,8 @@ namespace MovieFranchiseWebAPI.Models
             },
             new Movie()
             {
+                Id = 2,
+                FranchiseId = 2,
                 Tittle = "Captain America: The Winter Soldier",
                 Genre = "Action, Drama, Romace",
                 ReleaseYear = 2014,
@@ -44,6 +50,8 @@ namespace MovieFranchiseWebAPI.Models
             },
             new Movie()
             {
+                Id = 3,
+                FranchiseId = 2,
                 Tittle = "Captain America: Civil War",
                 Genre = "Action, Drama",
                 ReleaseYear = 2016,
@@ -53,6 +61,8 @@ namespace MovieFranchiseWebAPI.Models
             },
             new Movie()
             {
+                Id = 4,
+                FranchiseId = 2,
                 Tittle = "Avengers: Infinity War",
                 Genre = "Action, Comedy, Drama, Romance",
                 ReleaseYear = 2018,
@@ -66,6 +76,7 @@ namespace MovieFranchiseWebAPI.Models
         {
             new Character()
             {
+                Id = 1,
                 FullName = "John Wick",
                 Alias = "Baba Yaga",
                 Gender = "Male",
@@ -73,6 +84,7 @@ namespace MovieFranchiseWebAPI.Models
             },
             new Character()
             {
+                Id = 2,
                 FullName = "Tony Stark",
                 Alias = "Iron Man",
                 Gender = "Male",
@@ -80,6 +92,7 @@ namespace MovieFranchiseWebAPI.Models
             },
             new Character()
             {
+                Id = 3,
                 FullName = "Steve Rogers",
                 Alias = "Captain America",
                 Gender = "Male",
@@ -87,6 +100,7 @@ namespace MovieFranchiseWebAPI.Models
             },
             new Character()
             {
+                Id = 4,
                 FullName = "Natasha Romanoff",
                 Alias = "Black Widow",
                 Gender = "Female",
@@ -94,6 +108,7 @@ namespace MovieFranchiseWebAPI.Models
             },
             new Character()
             {
+                Id = 5,
                 FullName = "Bruce Banner",
                 Alias = "Hulk",
                 Gender = "Male",
@@ -101,6 +116,7 @@ namespace MovieFranchiseWebAPI.Models
             },
             new Character()
             {
+                Id = 6,
                 FullName = "Peter Parker",
                 Alias = "Spider-Man",
                 Gender = "Male",
