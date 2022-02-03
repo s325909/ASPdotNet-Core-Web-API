@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MovieFranchiseWebAPI.Models
 {
-    public class MovieFranchiseMockData 
+    public class MovieFranchiseMockData
     {
         public readonly List<Franchise> Franchises = new()
         {
@@ -24,11 +24,12 @@ namespace MovieFranchiseWebAPI.Models
             }
         };
 
-        public readonly List<Movie> Movies= new()  
+        public readonly List<Movie> Movies = new()
         {
             new Movie()
             {
                 Id = 1,
+                FranchiseId = 1,
                 Tittle = "John Wick: Chapter 4",
                 Genre = "Action, Crime, Drama, Thriller",
                 ReleaseYear = 2023,
@@ -39,6 +40,7 @@ namespace MovieFranchiseWebAPI.Models
             new Movie()
             {
                 Id = 2,
+                FranchiseId = 2,
                 Tittle = "Captain America: The Winter Soldier",
                 Genre = "Action, Drama, Romace",
                 ReleaseYear = 2014,
@@ -49,6 +51,7 @@ namespace MovieFranchiseWebAPI.Models
             new Movie()
             {
                 Id = 3,
+                FranchiseId = 2,
                 Tittle = "Captain America: Civil War",
                 Genre = "Action, Drama",
                 ReleaseYear = 2016,
@@ -59,6 +62,7 @@ namespace MovieFranchiseWebAPI.Models
             new Movie()
             {
                 Id = 4,
+                FranchiseId = 2,
                 Tittle = "Avengers: Infinity War",
                 Genre = "Action, Comedy, Drama, Romance",
                 ReleaseYear = 2018,

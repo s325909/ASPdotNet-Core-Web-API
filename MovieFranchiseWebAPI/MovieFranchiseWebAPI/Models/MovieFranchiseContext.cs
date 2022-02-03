@@ -23,40 +23,49 @@ namespace MovieFranchiseWebAPI.Models
             // dummy data class with list of characters, movies and franchises
             var mockData = new MovieFranchiseMockData();
 
-            // seed dummy Character data to database table
-            for (int i = 0; i < mockData.Characters.Count; i++)
-                modelBuilder.Entity<Character>().HasData(mockData.Characters[i]);
+            // seed dummy Franchise data to database table
+            for (int i = 0; i < mockData.Franchises.Count; i++)
+                modelBuilder.Entity<Franchise>().HasData(mockData.Franchises[i]);
 
             // seed dummy Movie data to database table
             for (int i = 0; i < mockData.Movies.Count; i++)
                 modelBuilder.Entity<Movie>().HasData(mockData.Movies[i]);
 
-            // seed dummy Franchise data to database table
-            //for (int i = 0; i < mockData.Franchises.Count; i++)
-                //modelBuilder.Entity<Franchise>().HasData(mockData.Franchises[i]);    
+            // seed dummy Character data to database table
+            for (int i = 0; i < mockData.Characters.Count; i++)
+                modelBuilder.Entity<Character>().HasData(mockData.Characters[i]);
 
-            /**
-
-            // seed m2m movie-character; need to define m2m and access linking table
+            // seed m2m movie-character by accessing defined linking table 
             modelBuilder.Entity<Movie>()
                 .HasMany(m => m.Characters)
                 .WithMany(c => c.Movies)
                 .UsingEntity<Dictionary<string, object>>(
-                    "MovieCharacter",
-                    r => r.HasOne<Character>().WithMany().HasForeignKey("CharacterId"),
-                    l => l.HasOne<Movie>().WithMany().HasForeignKey("MovieId"),
+                "MovieCharacter",
+                    rs => rs.HasOne<Character>().WithMany().HasForeignKey("CharacterId"),
+                    ls => ls.HasOne<Movie>().WithMany().HasForeignKey("MovieId"),
                     je =>
                     {
                         je.HasKey("MovieId", "CharacterId");
                         je.HasData(
+                            // John Wick 1 Characters
                             new { MovieId = 1, CharacterId = 1 },
-                            new { MovieId = 2, CharacterId = 2 },
-                            new { MovieId = 2, CharacterId = 3 }
+                            // Captain America 2 Characters
+                            new { MovieId = 2, CharacterId = 3 },
+                            new { MovieId = 2, CharacterId = 4 },
+                            // Captain America 3 Chracters
+                            new { MovieId = 3, CharacterId = 2 },
+                            new { MovieId = 3, CharacterId = 3 },
+                            new { MovieId = 3, CharacterId = 4 },
+                            new { MovieId = 3, CharacterId = 6 },
+                            // Avangers Infinity War Characters
+                            new { MovieId = 4, CharacterId = 2 },
+                            new { MovieId = 4, CharacterId = 3 },
+                            new { MovieId = 4, CharacterId = 4 },
+                            new { MovieId = 4, CharacterId = 5 },
+                            new { MovieId = 4, CharacterId = 6 }
                         );
                     }
                 );
-
-            **/
         }
     }
 }
