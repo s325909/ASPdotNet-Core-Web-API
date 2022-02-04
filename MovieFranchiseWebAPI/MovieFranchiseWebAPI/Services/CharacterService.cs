@@ -51,6 +51,11 @@ namespace MovieFranchiseWebAPI.Services
             .ToListAsync();
         }
 
+        /// <summary>
+        /// get specific chracter from dBContext while also including list of movie ids
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public async Task<Character> GetSpecificCharacterAsync(int id)
         {
             return await _context.Characters

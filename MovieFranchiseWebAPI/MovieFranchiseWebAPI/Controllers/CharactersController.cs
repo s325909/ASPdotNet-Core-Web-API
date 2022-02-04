@@ -39,10 +39,14 @@ namespace MovieFranchiseWebAPI.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<CharacterReadDTO> GetCharacter(int id)
+        public async Task<ActionResult<CharacterReadDTO>> GetCharacter(int id)
         {
-            return _mapper.Map<CharacterReadDTO>(
-                await _characterService.GetSpecificCharacterAsync(id));
+            var character = await _characterService.GetSpecificCharacterAsync(id);
+
+            if (character == null)
+                return NotFound($"Character with id: {id} was not found");
+
+            return _mapper.Map<CharacterReadDTO>(character);
         }
     }
 }
