@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MovieFranchiseWebAPI.Models.DTO.Character
 {
-    public class CharacterDTO
+    public class CharacterCreateDTO 
     {
         public string FullName { get; set; }
         public string Alias { get; set; }

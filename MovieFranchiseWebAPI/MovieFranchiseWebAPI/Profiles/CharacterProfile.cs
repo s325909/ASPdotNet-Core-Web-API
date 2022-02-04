@@ -17,8 +17,8 @@ namespace MovieFranchiseWebAPI.Profiles
                 // turning related movies into int array
                 .ForMember(cdto => cdto.Movies, opt => opt
                 .MapFrom(c => c.Movies.Select(m => m.Id).ToArray()));
-            // CharacterDTO --> Character
-            CreateMap<CharacterDTO, Character>();
+            // CharacterCreateDTO --> Character
+            CreateMap<CharacterCreateDTO, Character>();
             // CharacterEditDTO --> Character
             CreateMap<CharacterEditDTO, Character>();
         }
