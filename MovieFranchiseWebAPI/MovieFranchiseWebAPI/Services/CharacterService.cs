@@ -46,10 +46,6 @@ namespace MovieFranchiseWebAPI.Services
         /// <returns>list of characters</returns>
         public async Task<IEnumerable<Character>> GetAllCharactersAsync()
         {
-           // return await _context.Characters
-             //   .Include(c => c.Movies)
-               // .ToListAsync();
-
             return await _context.Characters
             .Include(c => c.Movies)
             .ToListAsync();
@@ -57,12 +53,9 @@ namespace MovieFranchiseWebAPI.Services
 
         public async Task<Character> GetSpecificCharacterAsync(int id)
         {
-            //await _context.Characters
-              //  .Include(c => c.Movies);
-
             return await _context.Characters
-                .FindAsync(id);
-                //.Include(c => c.Movies)
+                .Include(c => c.Movies)
+                .SingleOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task UpdateCharacterAsync(Character character)
