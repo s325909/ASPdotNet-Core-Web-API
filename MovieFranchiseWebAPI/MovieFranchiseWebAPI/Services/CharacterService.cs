@@ -63,9 +63,15 @@ namespace MovieFranchiseWebAPI.Services
                 .SingleOrDefaultAsync(c => c.Id == id);
         }
 
+        /// <summary>
+        /// provides entry access to change tracking information & operations of a character 
+        /// </summary>
+        /// <param name="character"></param>
+        /// <returns></returns>
         public async Task UpdateCharacterAsync(Character character)
         {
-            throw new NotImplementedException();
+            _context.Entry(character).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
         }
 
         public async Task UpdateCharacterMoviesAsync(int characterId, List<int> movies)

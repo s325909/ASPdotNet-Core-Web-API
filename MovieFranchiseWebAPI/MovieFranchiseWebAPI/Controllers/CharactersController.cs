@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieFranchiseWebAPI.Models;
+using MovieFranchiseWebAPI.Models.Domain;
 using MovieFranchiseWebAPI.Models.DTO.Character;
 using MovieFranchiseWebAPI.Services;
 using System;
@@ -47,6 +48,21 @@ namespace MovieFranchiseWebAPI.Controllers
                 return NotFound($"Character with id: {id} was not found");
 
             return _mapper.Map<CharacterReadDTO>(character);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateCharacter(int id, CharacterEditDTO dtoCharacter)
+        {
+           if (id != dtoCharacter.Id)
+               return BadRequest("Invalid CharacterId");
+
+            if (!_characterService.CharacterExists(id))
+                return NotFound($"Character with id: {id} was not found");
+
+            var domainCharacter = _mapper.Map<Character>(dtoCharacter);
+            await _characterService.UpdateCharacterAsync(domainCharacter);
+
+            return NoContent();
         }
     }
 }
