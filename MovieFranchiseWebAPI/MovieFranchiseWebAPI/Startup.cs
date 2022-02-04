@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MovieFranchiseWebAPI.Models;
 using MovieFranchiseWebAPI.Repositories;
+using MovieFranchiseWebAPI.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,6 +39,8 @@ namespace MovieFranchiseWebAPI
             services.AddDbContextPool<MovieFranchiseContext>(options => options.UseSqlServer(
                 Configuration.GetConnectionString("MovieFranchiseContextConnectionString")));
             // services.AddScoped<IMovieFranchiseRepo, SqlMovieFranchiseData>();
+
+            services.AddScoped<ICharacterService, CharacterService>();
 
 
             services.AddSwaggerGen(c =>

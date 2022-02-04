@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MovieFranchiseWebAPI.Models;
 using MovieFranchiseWebAPI.Models.DTO.Character;
+using MovieFranchiseWebAPI.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,28 +20,40 @@ namespace MovieFranchiseWebAPI.Controllers
     [ApiConventionType(typeof(DefaultApiConventions))]
     public class CharactersController : ControllerBase
     {
-        private readonly MovieFranchiseContext _context;
+        // private readonly MovieFranchiseContext _context;
         private readonly IMapper _mapper;
+        private readonly ICharacterService _characterService;
 
-        public CharactersController(MovieFranchiseContext context, IMapper mapper)
+        public CharactersController(IMapper mapper, ICharacterService characterService)
         {
-            _context = context;
+            //_context = context;
             _mapper = mapper;
+            _characterService = characterService;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CharacterReadDTO>>> GetCharacters()  
         {
+            // return _mapper.Map<List<CharacterReadDTO>>
+            //   (await _characterService.GetAllCharactersAsync());
+
+            return _mapper.Map<List<CharacterReadDTO>>(
+                await _characterService.GetAllCharactersAsync());
+
+            /**
             return _mapper.Map<List<CharacterReadDTO>>(
                 await _context.Characters
                 .Include(c => c.Movies)
                 .ToListAsync()
                 );
+            **/
         }
 
         [HttpGet("{id}")]
         public async Task<CharacterReadDTO> GetCharacter(int id)
         {
+
+            /**
 
             var a = _mapper.Map<List<CharacterReadDTO>>(
                 await _context.Characters
@@ -58,6 +71,10 @@ namespace MovieFranchiseWebAPI.Controllers
                 //.ToListAsync()
                 //);
                 return new()
+
+            **/
+
+            return new();
         }
     }
 }
