@@ -12,15 +12,15 @@ namespace MovieFranchiseWebAPI.Profiles
     {
         public CharacterProfile()
         {
+            // CharacterCreateDTO --> Character
+            CreateMap<CharacterCreateDTO, Character>();
+            // CharacterEditDTO --> Character
+            CreateMap<CharacterEditDTO, Character>();
             // Character --> CharacterReadDTO
             CreateMap<Character, CharacterReadDTO>()
                 // turning related movies into int array
                 .ForMember(cdto => cdto.Movies, opt => opt
                 .MapFrom(c => c.Movies.Select(m => m.Id).ToArray()));
-            // CharacterCreateDTO --> Character
-            CreateMap<CharacterCreateDTO, Character>();
-            // CharacterEditDTO --> Character
-            CreateMap<CharacterEditDTO, Character>();
         }
 
 

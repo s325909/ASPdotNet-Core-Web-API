@@ -12,13 +12,15 @@ namespace MovieFranchiseWebAPI.Profiles
     {
         public FranchiseProfile()
         {
+            // FranchiseCreateDTO --> Franchise
+            CreateMap<FranchiseCreateDTO, Franchise>();
+            // FranchiseEditDTO --> Franchise
+            CreateMap<FranchiseCreateDTO, Franchise>();
             // Franchise --> FranchiseReadDTO
             CreateMap<Franchise, FranchiseReadDTO>()
                 // turning related movies into int array
                 .ForMember(fdto => fdto.Movies, opt => opt
                 .MapFrom(f => f.Movies.Select(m => m.Id).ToArray()));
-            // FranchiseDTO --> Franchise
-            CreateMap<FranchiseDTO, Franchise>();
         }
     }
 }

@@ -12,6 +12,10 @@ namespace MovieFranchiseWebAPI.Profiles
     {
         public MovieProfile()
         {
+            // MovieCreateDTO --> Movie
+            CreateMap<MovieCreateDTO, Movie>();
+            // MovieEditDTO --> Movie
+            CreateMap<MovieEditDTO, Movie>();
             // Movie --> MovieReadDTO
             CreateMap<Movie, MovieReadDTO>()
                 // turning related characters into int array
@@ -21,10 +25,6 @@ namespace MovieFranchiseWebAPI.Profiles
                 .ForMember(mdto => mdto.Franchise, opt => opt
                 .MapFrom(m => m.FranchiseId))
                 .ReverseMap();
-            // MovieCreateDTO --> Movie
-            CreateMap<MovieCreateDTO, Movie>();
-            // MovieEditDTO --> Movie
-            CreateMap<MovieEditDTO, Movie>();
         }
     }
 }
