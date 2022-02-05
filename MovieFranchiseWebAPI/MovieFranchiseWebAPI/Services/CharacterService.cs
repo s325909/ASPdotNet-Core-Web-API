@@ -58,9 +58,7 @@ namespace MovieFranchiseWebAPI.Services
         /// <returns></returns>
         public async Task<Character> GetSpecificCharacterAsync(int id)
         {
-            return await _context.Characters
-                .Include(c => c.Movies)
-                .SingleOrDefaultAsync(c => c.Id == id);
+            return await GetCharacterAsync(id);
         }
 
         /// <summary>
@@ -74,7 +72,29 @@ namespace MovieFranchiseWebAPI.Services
             await _context.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// updates list of movie ids for a character by id
+        /// </summary>
+        /// <param name="characterId"></param>
+        /// <param name="movieIds"></param>
+        /// <returns></returns>
         public async Task UpdateCharacterMoviesAsync(int characterId, List<int> movieIds)
+        {
+            var character = await GetCharacterAsync(characterId);
+
+            character.Movies = await GetCharacterMoviesAsync(movieIds);
+
+            await _context.SaveChangesAsync();
+        }
+
+        private async Task<Character> GetCharacterAsync(int characterId)
+        {
+            return await _context.Characters
+                .Include(c => c.Movies)
+                .SingleOrDefaultAsync(c => c.Id == characterId);
+        }
+
+        private async Task<List<Movie>> GetCharacterMoviesAsync(List<int> movieIds)
         {
             var movies = new List<Movie>();
             foreach (int movieId in movieIds)
@@ -84,21 +104,8 @@ namespace MovieFranchiseWebAPI.Services
                     throw new KeyNotFoundException($"Record of Movie with id: {movieId} does not exist");
                 movies.Add(movie);
             }
-
-            /**
-             
-            await _context.Characters
-                .Include(c => c.Movies)
-                .Where(c => c.Id == characterId)
-                .Select(cm => cm.Movies)
-                .ForEachAsync(cm => cm = movies);
-
-            **/
-
-            Character character = await _context.Characters.FindAsync(characterId);
-            character.Movies = movies;
-
-            await _context.SaveChangesAsync();
+            return movies;
         }
     }
+
 }
