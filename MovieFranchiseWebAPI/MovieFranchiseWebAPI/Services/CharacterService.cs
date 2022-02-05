@@ -18,9 +18,11 @@ namespace MovieFranchiseWebAPI.Services
             _context = context;
         }
 
-        public Task<Character> AddCharacterAsync(Character character)
+        public async Task<Character> AddCharacterAsync(Character character)
         {
-            throw new NotImplementedException();
+            _context.Characters.Add(character);
+            await _context.SaveChangesAsync();
+            return character;
         }
 
         public bool CharacterExists(int id)

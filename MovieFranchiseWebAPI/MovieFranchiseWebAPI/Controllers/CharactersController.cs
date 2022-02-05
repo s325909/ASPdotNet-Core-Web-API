@@ -39,6 +39,34 @@ namespace MovieFranchiseWebAPI.Controllers
                 await _characterService.GetAllCharactersAsync());
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutCharacter(int id, CharacterEditDTO dtoCharacter)
+        {
+            if (id != dtoCharacter.Id)
+                return BadRequest("Invalid CharacterId");
+
+            if (!_characterService.CharacterExists(id))
+                return NotFound($"Character with id: {id} was not found");
+
+            var domainCharacter = _mapper.Map<Character>(dtoCharacter);
+            await _characterService.UpdateCharacterAsync(domainCharacter);
+
+            return Ok($"Updated Character with id: {id}");
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<CharacterReadDTO>> PostCharacter(CharacterCreateDTO dtoCharacter)
+        {
+            var domainCharacter = _mapper.Map<Character>(dtoCharacter);
+
+            domainCharacter = await _characterService.AddCharacterAsync(domainCharacter);
+            
+            string uri = HttpContext.Request.Scheme + "://" + HttpContext.Request.Host
+                + HttpContext.Request.Path + "/" + domainCharacter.Id;
+
+            return Created(uri, _mapper.Map<CharacterReadDTO>(domainCharacter));
+        }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<CharacterReadDTO>> GetCharacter(int id)
         {
@@ -48,21 +76,6 @@ namespace MovieFranchiseWebAPI.Controllers
                 return NotFound($"Character with id: {id} was not found");
 
             return _mapper.Map<CharacterReadDTO>(character);
-        }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCharacter(int id, CharacterEditDTO dtoCharacter)
-        {
-           if (id != dtoCharacter.Id)
-               return BadRequest("Invalid CharacterId");
-
-            if (!_characterService.CharacterExists(id))
-                return NotFound($"Character with id: {id} was not found");
-
-            var domainCharacter = _mapper.Map<Character>(dtoCharacter);
-            await _characterService.UpdateCharacterAsync(domainCharacter);
-
-            return Ok($"Updated Character with id: {id}");
         }
 
         [HttpPatch("{id}/movies")]
