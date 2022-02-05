@@ -28,10 +28,10 @@ namespace MovieFranchiseWebAPI.Models.Domain
         [MaxLength(50, ErrorMessage = "Director can only be 50 characters long!")]
         public string Director { get; set; }
 
-        [MaxLength(175, ErrorMessage = "Picture URL can only be 175 characters long!")]
+        [MaxLength(250, ErrorMessage = "Picture URL can only be 250 characters long!")]
         public string PictureURL { get; set; }
 
-        [MaxLength(175, ErrorMessage = "Trailer URL can only be 175 characters long!")]
+        [MaxLength(250, ErrorMessage = "Trailer URL can only be 250 characters long!")]
         public string TrailerURL { get; set; }
 
         // Relationships

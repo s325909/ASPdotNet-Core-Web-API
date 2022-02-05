@@ -101,6 +101,16 @@ namespace MovieFranchiseWebAPI.Services
             await _context.SaveChangesAsync();
         }
 
+        public async Task UpdateMovieFranchiseAsync(int movieId, int franchiseId)
+        {
+            var movie = await GetMovieAsync(movieId);
+
+            var franchise = await _context.Franchises.FindAsync(franchiseId);
+            movie.Franchise = franchise ?? throw new KeyNotFoundException($"Record of Franchise with id: {franchiseId} does not exist");
+
+            await _context.SaveChangesAsync();
+        }
+
         private async Task<Movie> GetMovieAsync(int movieId)
         {
             return await _context.Movies

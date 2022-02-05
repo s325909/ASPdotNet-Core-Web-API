@@ -118,7 +118,7 @@ namespace MovieFranchiseWebAPI.Controllers
         /// <param name="id"></param>
         /// <param name="characterIds"></param>
         /// <returns></returns>
-        [HttpPatch("{id}/movies")]
+        [HttpPatch("{id}/characters")]
         public async Task<IActionResult> PatchCharacterMovies(int id, List<int> characterIds)
         {
             if (!_movieService.MovieExists(id))
@@ -133,7 +133,29 @@ namespace MovieFranchiseWebAPI.Controllers
             }
             string characters = " ";
             characterIds.ForEach(m => characters += $"{m}, ");
-            return Ok($"Patched Character(s) [{characters}] for Movie with id: {id}");
+            return Ok($"Patch-updated Character(s) [{characters}] for Movie with id: {id}");
+        }
+
+        /// <summary>
+        /// Updates Franchise of a Movie in the database by their id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="franchiseId"></param>
+        /// <returns></returns>
+        [HttpPatch("{id}/franchise")]
+        public async Task<IActionResult> PatchCharacterMovies(int id, int franchiseId)
+        {
+            if (!_movieService.MovieExists(id))
+                return NotFound($"Movie with id: {id} was not found");
+            try
+            {
+                await _movieService.UpdateMovieFranchiseAsync(id, franchiseId);
+            }
+            catch (KeyNotFoundException e)
+            {
+                return BadRequest(e.Message);
+            }
+            return Ok($"Patch-updated Franchise [{franchiseId}] for Movie with id: {id}");
         }
     }
 }

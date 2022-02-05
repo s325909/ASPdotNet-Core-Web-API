@@ -13,7 +13,8 @@ namespace MovieFranchiseWebAPI.Services
         public Task<Movie> AddMovieAsync(Movie movie);
         public Task UpdateMovieAsync(Movie movie);
         public Task DeleteMovieAsync(int id);
-        public Task UpdateMovieChractersAsync(int movieId, List<int> characterIds); 
+        public Task UpdateMovieChractersAsync(int movieId, List<int> characterIds);
+        public Task UpdateMovieFranchiseAsync(int movieId, int franchiseId); 
         public bool MovieExists(int id);  
     }
 }

@@ -23,8 +23,8 @@ namespace MovieFranchiseWebAPI.Profiles
                 .MapFrom(m => m.Characters.Select(c => c.Id).ToArray()))
                 // (int) Franchise <--> FranchiseId
                 .ForMember(mdto => mdto.Franchise, opt => opt
-                .MapFrom(m => m.FranchiseId))
-                .ReverseMap();
+                .MapFrom(m => m.FranchiseId));
+                //.ReverseMap();
         }
     }
 }
