@@ -51,7 +51,7 @@ namespace MovieFranchiseWebAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateCharacter(int id, CharacterEditDTO dtoCharacter)
+        public async Task<IActionResult> PutCharacter(int id, CharacterEditDTO dtoCharacter)
         {
            if (id != dtoCharacter.Id)
                return BadRequest("Invalid CharacterId");
@@ -66,7 +66,7 @@ namespace MovieFranchiseWebAPI.Controllers
         }
 
         [HttpPatch("{id}/movies")]
-        public async Task<IActionResult> UpdateCharacterMovies(int id, List<int> movies)
+        public async Task<IActionResult> PatchCharacterMovies(int id, List<int> movies)
         {
             if (!_characterService.CharacterExists(id))
                 return NotFound($"Character with id: {id} was not found");
