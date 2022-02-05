@@ -6,18 +6,16 @@ using System.Threading.Tasks;
 namespace MovieFranchiseWebAPI.Models.DTO.Movie
 {
     /// <summary>
-    /// DTO used when fetching a Movie
+    /// DTO used when creating a new Movie
     /// </summary>
-    public class MovieReadDTO
+    public class MovieCreateDTO
     {
-        public int Id { get; set; }
         public string Tittle { get; set; }
         public string Genre { get; set; }
         public int ReleaseYear { get; set; }
         public string Director { get; set; }
         public string PictureURL { get; set; }
         public string TrailerURL { get; set; }
-        public int Franchise { get; set; }  
-        public List<int> Characters { get; set; }
+        public int? Franchise { get; set; } 
     }
 }

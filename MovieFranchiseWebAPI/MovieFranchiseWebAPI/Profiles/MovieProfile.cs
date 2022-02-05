@@ -21,8 +21,10 @@ namespace MovieFranchiseWebAPI.Profiles
                 .ForMember(mdto => mdto.Franchise, opt => opt
                 .MapFrom(m => m.FranchiseId))
                 .ReverseMap();
-            // MovieDTO --> Movie
-            CreateMap<MovieDTO, Movie>(); 
+            // MovieCreateDTO --> Movie
+            CreateMap<MovieCreateDTO, Movie>();
+            // MovieEditDTO --> Movie
+            CreateMap<MovieEditDTO, Movie>();
         }
     }
 }
