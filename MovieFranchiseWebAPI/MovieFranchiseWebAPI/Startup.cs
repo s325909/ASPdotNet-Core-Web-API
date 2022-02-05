@@ -41,6 +41,7 @@ namespace MovieFranchiseWebAPI
                 Configuration.GetConnectionString("MovieFranchiseContextConnectionString")));
             services.AddScoped<ICharacterService, CharacterService>();
             services.AddScoped<IMovieService, MovieService>();
+            services.AddScoped<IFranchiseService, FranchiseService>();
 
             services.AddSwaggerGen(c =>
             {
