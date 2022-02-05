@@ -64,6 +64,21 @@
             DTO used when fetching a Character
             </summary>
         </member>
+        <member name="T:MovieFranchiseWebAPI.Models.DTO.Movie.MovieCreateDTO">
+            <summary>
+            DTO used when creating a new Movie
+            </summary>
+        </member>
+        <member name="T:MovieFranchiseWebAPI.Models.DTO.Movie.MovieEditDTO">
+            <summary>
+            DTO used when updating an existing Movie
+            </summary>
+        </member>
+        <member name="T:MovieFranchiseWebAPI.Models.DTO.Movie.MovieReadDTO">
+            <summary>
+            DTO used when fetching a Movie
+            </summary>
+        </member>
         <member name="M:MovieFranchiseWebAPI.Services.CharacterService.DeleteCharacterAsync(System.Int32)">
             <summary>
             uses FindAsync(id) on dBContext to find a charater, remove it, and update the database. 
