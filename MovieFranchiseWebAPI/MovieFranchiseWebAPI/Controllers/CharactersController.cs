@@ -62,7 +62,7 @@ namespace MovieFranchiseWebAPI.Controllers
             var domainCharacter = _mapper.Map<Character>(dtoCharacter);
             await _characterService.UpdateCharacterAsync(domainCharacter);
 
-            return NoContent();
+            return Ok($"Updated Character with id: {id}");
         }
 
         [HttpPatch("{id}/movies")]
@@ -78,7 +78,9 @@ namespace MovieFranchiseWebAPI.Controllers
             {
                 return BadRequest(e.Message);
             }
-            return Ok();
+            string movieIds = " ";
+            movies.ForEach(m => movieIds += $"{m}, ");
+            return Ok($"Patched Movie(s) [{movieIds}] for Character with id: {id}");
         }
     }
 }
