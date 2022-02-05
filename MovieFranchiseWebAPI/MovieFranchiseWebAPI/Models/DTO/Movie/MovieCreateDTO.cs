@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 
 namespace MovieFranchiseWebAPI.Models.DTO.Movie
 {
-    public class MovieDTO
+    /// <summary>
+    /// DTO used when creating a new Movie
+    /// </summary>
+    public class MovieCreateDTO
     {
         public string Tittle { get; set; }
         public string Genre { get; set; }

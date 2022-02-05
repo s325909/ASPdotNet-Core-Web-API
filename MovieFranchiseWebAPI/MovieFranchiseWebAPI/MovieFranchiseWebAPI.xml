@@ -1,0 +1,258 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MovieFranchiseWebAPI</name>
+    </assembly>
+    <members>
+        <member name="M:MovieFranchiseWebAPI.Controllers.CharactersController.GetCharacters">
+            <summary>
+            Fetches all Characters from the database
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.CharactersController.PostCharacter(MovieFranchiseWebAPI.Models.DTO.Character.CharacterCreateDTO)">
+            <summary>
+            Adds a new Character to the database
+            </summary>
+            <param name="dtoCharacter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.CharactersController.GetCharacter(System.Int32)">
+            <summary>
+            Fetches a specific Character from the database by their id 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.CharactersController.PutCharacter(System.Int32,MovieFranchiseWebAPI.Models.DTO.Character.CharacterEditDTO)">
+            <summary>
+            Updates a Character in the database by their id; 
+            must pass in an updated Character object
+            </summary>
+            <param name="id"></param>
+            <param name="dtoCharacter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.CharactersController.DeleteCharacter(System.Int32)">
+            <summary>
+            Deletes a Character in the database by their id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.CharactersController.PatchCharacterMovies(System.Int32,System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Updates movies of a Character in the database by their id; 
+            must pass in an updated list of movie Ids
+            </summary>
+            <param name="id"></param>
+            <param name="movieIds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.MoviesController.GetMovies">
+            <summary>
+            Fetches all Movies from the database
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.MoviesController.PostCharacter(MovieFranchiseWebAPI.Models.DTO.Movie.MovieCreateDTO)">
+            <summary>
+            Adds a new Movie to the database
+            </summary>
+            <param name="dtoMovie"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.MoviesController.GetMovie(System.Int32)">
+            <summary>
+            Fetches a specific Movie from the database by their id 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.MoviesController.PutMovie(System.Int32,MovieFranchiseWebAPI.Models.DTO.Movie.MovieEditDTO)">
+            <summary>
+            Updates a Movie in the database by their id; 
+            must pass in an updated Movie object
+            </summary>
+            <param name="id"></param>
+            <param name="dtoMovie"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.MoviesController.DeleteMovie(System.Int32)">
+            <summary>
+            Deletes a Movie in the database by their id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.MoviesController.PatchCharacterMovies(System.Int32,System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Updates characters of a Movie in the database by their id; 
+            must pass in an updated list of character Ids
+            </summary>
+            <param name="id"></param>
+            <param name="characterIds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.MoviesController.PatchCharacterMovies(System.Int32,System.Int32)">
+            <summary>
+            Updates Franchise of a Movie in the database by their id
+            </summary>
+            <param name="id"></param>
+            <param name="franchiseId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MovieFranchiseWebAPI.Models.DTO.Character.CharacterCreateDTO">
+            <summary>
+            DTO used when creating a new Character
+            </summary>
+        </member>
+        <member name="T:MovieFranchiseWebAPI.Models.DTO.Character.CharacterEditDTO">
+            <summary>
+            DTO used when updating an existing Character
+            </summary>
+        </member>
+        <member name="T:MovieFranchiseWebAPI.Models.DTO.Character.CharacterReadDTO">
+            <summary>
+            DTO used when fetching a Character
+            </summary>
+        </member>
+        <member name="T:MovieFranchiseWebAPI.Models.DTO.Franchise.FranchiseCreateDTO">
+            <summary>
+            DTO used when creating a new Franchise
+            </summary>
+        </member>
+        <member name="T:MovieFranchiseWebAPI.Models.DTO.Franchise.FranchiseEditDTO">
+            <summary>
+            DTO used when updating an existing Franchise
+            </summary>
+        </member>
+        <member name="T:MovieFranchiseWebAPI.Models.DTO.Franchise.FranchiseReadDTO">
+            <summary>
+            DTO used when fetching a Franchise
+            </summary>
+        </member>
+        <member name="T:MovieFranchiseWebAPI.Models.DTO.Movie.MovieCreateDTO">
+            <summary>
+            DTO used when creating a new Movie
+            </summary>
+        </member>
+        <member name="T:MovieFranchiseWebAPI.Models.DTO.Movie.MovieEditDTO">
+            <summary>
+            DTO used when updating an existing Movie
+            </summary>
+        </member>
+        <member name="T:MovieFranchiseWebAPI.Models.DTO.Movie.MovieReadDTO">
+            <summary>
+            DTO used when fetching a Movie
+            </summary>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Services.CharacterService.AddCharacterAsync(MovieFranchiseWebAPI.Models.Domain.Character)">
+            <summary>
+            Adds new Character to DbSet of Characters and updates the database. 
+            </summary>
+            <param name="character"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Services.CharacterService.CharacterExists(System.Int32)">
+            <summary>
+            Checks if id exists in DbSet of Characters
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Services.CharacterService.DeleteCharacterAsync(System.Int32)">
+            <summary>
+            Deletes a Character from DbSet of Characters and updates the database. 
+            Finds the Character by using FindAsync(id) on DbSet of Charaters.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Services.CharacterService.GetAllCharactersAsync">
+            <summary>
+            Gets all characters from DbSet of Characters while also including list of Movie Ids
+            </summary>
+            <returns>list of characters</returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Services.CharacterService.GetSpecificCharacterAsync(System.Int32)">
+            <summary>
+            Gets a specific Character from DbSet of Characters while also including list of Movie Ids ids
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Services.CharacterService.UpdateCharacterAsync(MovieFranchiseWebAPI.Models.Domain.Character)">
+            <summary>
+            Updates Character from DbSet of Characters.
+            Provides entry access to change tracking information and operations of the Character 
+            </summary>
+            <param name="character"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Services.CharacterService.UpdateCharacterMoviesAsync(System.Int32,System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Updates Character from DbSet of Characters with list of Movie Ids.
+            </summary>
+            <param name="characterId"></param>
+            <param name="movieIds"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MovieFranchiseWebAPI.Services.ICharacterService">
+            <summary>
+            essentially a repository for Character that follows the same pattern
+            </summary>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Services.MovieService.AddMovieAsync(MovieFranchiseWebAPI.Models.Domain.Movie)">
+            <summary>
+            Adds new Movie to DbSet of Movies and updates the database.
+            </summary>
+            <param name="movie"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Services.MovieService.DeleteMovieAsync(System.Int32)">
+            <summary>
+            Deletes a Movie from DbSet of Movies and updates the database. 
+            Finds the Movie by using FindAsync(id) on DbSet of Movies.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Services.MovieService.GetAllMoviesAsync">
+            <summary>
+            Gets all movies from DbSet of Movies while also including list of Character Ids
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Services.MovieService.GetSpecificMovieAsync(System.Int32)">
+            <summary>
+            Gets a specific Movie from DbSet of Characters while also including list of Character Ids
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Services.MovieService.MovieExists(System.Int32)">
+            <summary>
+            Checks if id exists in DbSet of Movies
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Services.MovieService.UpdateMovieAsync(MovieFranchiseWebAPI.Models.Domain.Movie)">
+            <summary>
+            Updates Movie from DbSet of Movies.
+            Provides entry access to change tracking information and operations of the Movie 
+            </summary>
+            <param name="movie"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Services.MovieService.UpdateMovieChractersAsync(System.Int32,System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Updates Movie from DbSet of Movies with list of Character Ids.
+            </summary>
+            <param name="movieId"></param>
+            <param name="characterIds"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

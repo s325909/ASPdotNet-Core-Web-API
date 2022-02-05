@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 namespace MovieFranchiseWebAPI.Models.DTO.Movie
 {
     /// <summary>
-    /// DTO used when fetching a Movie
+    /// DTO used when updating an existing Movie
     /// </summary>
-    public class MovieReadDTO
+    public class MovieEditDTO
     {
         public int Id { get; set; }
         public string Tittle { get; set; }
@@ -17,7 +17,5 @@ namespace MovieFranchiseWebAPI.Models.DTO.Movie
         public string Director { get; set; }
         public string PictureURL { get; set; }
         public string TrailerURL { get; set; }
-        public int Franchise { get; set; }  
-        public List<int> Characters { get; set; }
     }
 }

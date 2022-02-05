@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace MovieFranchiseWebAPI.Models.DTO.Character
 {
+    /// <summary>
+    /// DTO used when fetching a Character
+    /// </summary>
     public class CharacterReadDTO
     {
         public int Id { get; set; }

@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace MovieFranchiseWebAPI.Models.DTO.Character
 {
+    /// <summary>
+    /// DTO used when updating an existing Character
+    /// </summary>
     public class CharacterEditDTO
     {
         public int Id { get; set; }
