@@ -54,7 +54,7 @@ namespace MovieFranchiseWebAPI.Services
         }
 
         /// <summary>
-        /// Gets all characters from DbSet of Character while also including list of movie ids
+        /// Gets all characters from DbSet of Characters while also including list of Movie Ids
         /// </summary>
         /// <returns>list of characters</returns>
         public async Task<IEnumerable<Character>> GetAllCharactersAsync()
@@ -65,7 +65,7 @@ namespace MovieFranchiseWebAPI.Services
         }
 
         /// <summary>
-        /// Gets a specific chracter from DbSet of Characters while also including list of movie ids
+        /// Gets a specific Character from DbSet of Characters while also including list of Movie Ids ids
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -76,7 +76,7 @@ namespace MovieFranchiseWebAPI.Services
 
         /// <summary>
         /// Updates Character from DbSet of Characters.
-        /// Provides entry access to change tracking information and operations of the character 
+        /// Provides entry access to change tracking information and operations of the Character 
         /// </summary>
         /// <param name="character"></param>
         /// <returns></returns>
