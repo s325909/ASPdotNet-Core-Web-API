@@ -42,14 +42,14 @@ namespace MovieFranchiseWebAPI.Services
 
         /// <summary>
         /// Deletes a Character from DbSet of Characters and updates the database. 
-        /// Finds the Character by using FindAsync(id) on dBSet of Charaters.
+        /// Finds the Character by using FindAsync(id) on DbSet of Charaters.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         public async Task DeleteCharacterAsync(int id)
         {
-            var Character = await _context.Characters.FindAsync(id);
-            _context.Characters.Remove(Character);
+            var character = await _context.Characters.FindAsync(id);
+            _context.Characters.Remove(character);
             await _context.SaveChangesAsync();
         }
 
