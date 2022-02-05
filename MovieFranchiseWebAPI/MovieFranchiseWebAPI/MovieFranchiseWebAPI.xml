@@ -27,7 +27,7 @@
         <member name="M:MovieFranchiseWebAPI.Controllers.CharactersController.PutCharacter(System.Int32,MovieFranchiseWebAPI.Models.DTO.Character.CharacterEditDTO)">
             <summary>
             Updates a Character in the database by their id; 
-            must pass in an updated character object
+            must pass in an updated Character object
             </summary>
             <param name="id"></param>
             <param name="dtoCharacter"></param>
@@ -46,7 +46,52 @@
             must pass in an updated list of movie Ids
             </summary>
             <param name="id"></param>
-            <param name="movies"></param>
+            <param name="movieIds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.MoviesController.GetMovies">
+            <summary>
+            Fetches all Movies from the database
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.MoviesController.PostCharacter(MovieFranchiseWebAPI.Models.DTO.Movie.MovieCreateDTO)">
+            <summary>
+            Adds a new Movie to the database
+            </summary>
+            <param name="dtoMovie"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.MoviesController.GetMovie(System.Int32)">
+            <summary>
+            Fetches a specific Movie from the database by their id 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.MoviesController.PutMovie(System.Int32,MovieFranchiseWebAPI.Models.DTO.Movie.MovieEditDTO)">
+            <summary>
+            Updates a Movie in the database by their id; 
+            must pass in an updated Movie object
+            </summary>
+            <param name="id"></param>
+            <param name="dtoMovie"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.MoviesController.DeleteMovie(System.Int32)">
+            <summary>
+            Deletes a Movie in the database by their id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.MoviesController.PatchCharacterMovies(System.Int32,System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Updates characters of a Movie in the database by their id; 
+            must pass in an updated list of character Ids
+            </summary>
+            <param name="id"></param>
+            <param name="characterIds"></param>
             <returns></returns>
         </member>
         <member name="T:MovieFranchiseWebAPI.Models.DTO.Character.CharacterCreateDTO">

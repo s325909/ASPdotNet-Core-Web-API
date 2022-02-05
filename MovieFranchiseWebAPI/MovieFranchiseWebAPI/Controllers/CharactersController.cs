@@ -21,7 +21,6 @@ namespace MovieFranchiseWebAPI.Controllers
     [ApiConventionType(typeof(DefaultApiConventions))]
     public class CharactersController : ControllerBase
     {
-        // private readonly MovieFranchiseContext _context;
         private readonly IMapper _mapper;
         private readonly ICharacterService _characterService;
 
@@ -79,7 +78,7 @@ namespace MovieFranchiseWebAPI.Controllers
 
         /// <summary>
         /// Updates a Character in the database by their id; 
-        /// must pass in an updated character object
+        /// must pass in an updated Character object
         /// </summary>
         /// <param name="id"></param>
         /// <param name="dtoCharacter"></param>
@@ -120,24 +119,24 @@ namespace MovieFranchiseWebAPI.Controllers
         /// must pass in an updated list of movie Ids
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="movies"></param>
+        /// <param name="movieIds"></param>
         /// <returns></returns>
         [HttpPatch("{id}/movies")]
-        public async Task<IActionResult> PatchCharacterMovies(int id, List<int> movies)
+        public async Task<IActionResult> PatchCharacterMovies(int id, List<int> movieIds)
         {
             if (!_characterService.CharacterExists(id))
                 return NotFound($"Character with id: {id} was not found");
             try
             {
-                await _characterService.UpdateCharacterMoviesAsync(id, movies);
+                await _characterService.UpdateCharacterMoviesAsync(id, movieIds);
             }
             catch (KeyNotFoundException e)
             {
                 return BadRequest(e.Message);
             }
-            string movieIds = " ";
-            movies.ForEach(m => movieIds += $"{m}, ");
-            return Ok($"Patched Movie(s) [{movieIds}] for Character with id: {id}");
+            string movies = " ";
+            movieIds.ForEach(m => movies += $"{m}, ");
+            return Ok($"Patch-updated Movie(s) [{movies}] for Character with id: {id}");
         }
     }
 }
