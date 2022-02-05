@@ -16,7 +16,7 @@ namespace MovieFranchiseWebAPI.Services
         public Task<Character> AddCharacterAsync(Character character);
         public Task UpdateCharacterAsync(Character character);
         public Task DeleteCharacterAsync(int id);
-        public Task UpdateCharacterMoviesAsync(int characterId, List<int> movies);
+        public Task UpdateCharacterMoviesAsync(int characterId, List<int> movieIds);
         public bool CharacterExists(int id);
     }
 }

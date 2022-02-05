@@ -64,5 +64,21 @@ namespace MovieFranchiseWebAPI.Controllers
 
             return NoContent();
         }
+
+        [HttpPatch("{id}/movies")]
+        public async Task<IActionResult> UpdateCharacterMovies(int id, List<int> movies)
+        {
+            if (!_characterService.CharacterExists(id))
+                return NotFound($"Character with id: {id} was not found");
+            try
+            {
+                await _characterService.UpdateCharacterMoviesAsync(id, movies);
+            }
+            catch (KeyNotFoundException e)
+            {
+                return BadRequest(e.Message);
+            }
+            return Ok();
+        }
     }
 }

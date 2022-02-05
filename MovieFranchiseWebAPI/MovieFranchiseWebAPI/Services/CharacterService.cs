@@ -74,9 +74,31 @@ namespace MovieFranchiseWebAPI.Services
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateCharacterMoviesAsync(int characterId, List<int> movies)
+        public async Task UpdateCharacterMoviesAsync(int characterId, List<int> movieIds)
         {
-            throw new NotImplementedException();
+            var movies = new List<Movie>();
+            foreach (int movieId in movieIds)
+            {
+                var movie = await _context.Movies.FindAsync(movieId);
+                if (movie == null)
+                    throw new KeyNotFoundException($"Record of Movie with id: {movieId} does not exist");
+                movies.Add(movie);
+            }
+
+            /**
+             
+            await _context.Characters
+                .Include(c => c.Movies)
+                .Where(c => c.Id == characterId)
+                .Select(cm => cm.Movies)
+                .ForEachAsync(cm => cm = movies);
+
+            **/
+
+            Character character = await _context.Characters.FindAsync(characterId);
+            character.Movies = movies;
+
+            await _context.SaveChangesAsync();
         }
     }
 }
