@@ -49,6 +49,42 @@
             <param name="movieIds"></param>
             <returns></returns>
         </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.FranchisesController.GetFranchises">
+            <summary>
+            Fetches all Franchises from the database
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.FranchisesController.PostFranchise(MovieFranchiseWebAPI.Models.DTO.Franchise.FranchiseCreateDTO)">
+            <summary>
+            Adds a new Franchise to the database
+            </summary>
+            <param name="dtoFranchise"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.FranchisesController.GetFranchise(System.Int32)">
+            <summary>
+            Fetches a specific Franchise from the database by their id 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.FranchisesController.PutFranchise(System.Int32,MovieFranchiseWebAPI.Models.DTO.Franchise.FranchiseEditDTO)">
+            <summary>
+            Updates a Franchise in the database by their id; 
+            must pass in an updated Franchise object
+            </summary>
+            <param name="id"></param>
+            <param name="dtoFranchise"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.FranchisesController.DeleteFranchise(System.Int32)">
+            <summary>
+            Deletes a Franchise in the database by their id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="M:MovieFranchiseWebAPI.Controllers.MoviesController.GetMovies">
             <summary>
             Fetches all Movies from the database
@@ -196,6 +232,49 @@
             </summary>
             <param name="characterId"></param>
             <param name="movieIds"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Services.FranchiseService.AddFranchiseAsync(MovieFranchiseWebAPI.Models.Domain.Franchise)">
+            <summary>
+            Adds new Franchise to DbSet of Franchises and updates the database.
+            </summary>
+            <param name="franchise"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Services.FranchiseService.DeleteFranchiseAsync(System.Int32)">
+            <summary>
+            Deletes a Franchise from DbSet of Franchises and updates the database. 
+            Finds the Franchise by using FindAsync(id) on DbSet of Franchises.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Services.FranchiseService.FranchiseExists(System.Int32)">
+            <summary>
+            Checks if id exists in DbSet of Franchises
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Services.FranchiseService.GetAllFranchisesAsync">
+            <summary>
+            Gets all franchises from DbSet of Franchises while also including a list of Movie Ids
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Services.FranchiseService.GetSpecificFranchiseAsync(System.Int32)">
+            <summary>
+            Gets a specific Franchise from DbSet of Franchises while also including list of Movie Ids
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Services.FranchiseService.UpdateFranchiseAsync(MovieFranchiseWebAPI.Models.Domain.Franchise)">
+            <summary>
+            Updates Franchise from DbSet of Franchises.
+            Provides entry access to change tracking information and operations of the Franchise 
+            </summary>
+            <param name="franchise"></param>
             <returns></returns>
         </member>
         <member name="T:MovieFranchiseWebAPI.Services.ICharacterService">
