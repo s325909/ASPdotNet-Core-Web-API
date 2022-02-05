@@ -9,7 +9,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using MovieFranchiseWebAPI.Models;
-using MovieFranchiseWebAPI.Repositories;
 using MovieFranchiseWebAPI.Services;
 using System;
 using System.Collections.Generic;

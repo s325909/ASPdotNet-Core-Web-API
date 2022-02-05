@@ -64,7 +64,7 @@ namespace MovieFranchiseWebAPI.Services
         }
 
         /// <summary>
-        /// provides entry access to change tracking information & operations of a character 
+        /// provides entry access to change tracking information and operations of a character 
         /// </summary>
         /// <param name="character"></param>
         /// <returns></returns>
