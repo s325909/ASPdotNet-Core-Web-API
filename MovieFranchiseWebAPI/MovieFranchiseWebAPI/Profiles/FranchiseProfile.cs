@@ -15,7 +15,7 @@ namespace MovieFranchiseWebAPI.Profiles
             // FranchiseCreateDTO --> Franchise
             CreateMap<FranchiseCreateDTO, Franchise>();
             // FranchiseEditDTO --> Franchise
-            CreateMap<FranchiseCreateDTO, Franchise>();
+            CreateMap<FranchiseEditDTO, Franchise>();
             // Franchise --> FranchiseReadDTO
             CreateMap<Franchise, FranchiseReadDTO>()
                 // turning related movies into int array
