@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>MovieFranchiseWebAPI</name>
+    </assembly>
+    <members>
+        <member name="M:MovieFranchiseWebAPI.Controllers.CharactersController.GetCharacters">
+            <summary>
+            Fetches all Characters from the database
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.CharactersController.PostCharacter(MovieFranchiseWebAPI.Models.DTO.Character.CharacterCreateDTO)">
+            <summary>
+            Adds a new Character to the database
+            </summary>
+            <param name="dtoCharacter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.CharactersController.GetCharacter(System.Int32)">
+            <summary>
+            Fetches a specific Character from the database by their id 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.CharactersController.PutCharacter(System.Int32,MovieFranchiseWebAPI.Models.DTO.Character.CharacterEditDTO)">
+            <summary>
+            Updates a Character in the database by their id; 
+            must pass in an updated character object
+            </summary>
+            <param name="id"></param>
+            <param name="dtoCharacter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.CharactersController.DeleteCharacter(System.Int32)">
+            <summary>
+            Deletes a Character in the database by their id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.CharactersController.PatchCharacterMovies(System.Int32,System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Updates movies of a Character in the database by their id; 
+            must pass in an updated list of movie Ids
+            </summary>
+            <param name="id"></param>
+            <param name="movies"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Services.CharacterService.DeleteCharacterAsync(System.Int32)">
+            <summary>
+            uses FindAsync(id) on dBContext to find a charater, remove it, and update the database. 
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Services.CharacterService.GetAllCharactersAsync">
+            <summary>
+            gets all character from dBContext while also including list of movie ids
+            </summary>
+            <returns>list of characters</returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Services.CharacterService.GetSpecificCharacterAsync(System.Int32)">
+            <summary>
+            get specific chracter from dBContext while also including list of movie ids
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Services.CharacterService.UpdateCharacterAsync(MovieFranchiseWebAPI.Models.Domain.Character)">
+            <summary>
+            provides entry access to change tracking information and operations of a character 
+            </summary>
+            <param name="character"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Services.CharacterService.UpdateCharacterMoviesAsync(System.Int32,System.Collections.Generic.List{System.Int32})">
+            <summary>
+            updates list of movie ids for a character by id
+            </summary>
+            <param name="characterId"></param>
+            <param name="movieIds"></param>
+            <returns></returns>
+        </member>
+        <member name="T:MovieFranchiseWebAPI.Services.ICharacterService">
+            <summary>
+            essentially a repository for Character that follows the same pattern
+            </summary>
+        </member>
+    </members>
+</doc>
