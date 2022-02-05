@@ -39,21 +39,6 @@ namespace MovieFranchiseWebAPI.Controllers
                 await _characterService.GetAllCharactersAsync());
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutCharacter(int id, CharacterEditDTO dtoCharacter)
-        {
-            if (id != dtoCharacter.Id)
-                return BadRequest("Invalid CharacterId");
-
-            if (!_characterService.CharacterExists(id))
-                return NotFound($"Character with id: {id} was not found");
-
-            var domainCharacter = _mapper.Map<Character>(dtoCharacter);
-            await _characterService.UpdateCharacterAsync(domainCharacter);
-
-            return Ok($"Updated Character with id: {id}");
-        }
-
         [HttpPost]
         public async Task<ActionResult<CharacterReadDTO>> PostCharacter(CharacterCreateDTO dtoCharacter)
         {
@@ -76,6 +61,32 @@ namespace MovieFranchiseWebAPI.Controllers
                 return NotFound($"Character with id: {id} was not found");
 
             return _mapper.Map<CharacterReadDTO>(character);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutCharacter(int id, CharacterEditDTO dtoCharacter)
+        {
+            if (id != dtoCharacter.Id)
+                return BadRequest("Invalid CharacterId");
+
+            if (!_characterService.CharacterExists(id))
+                return NotFound($"Character with id: {id} was not found");
+
+            var domainCharacter = _mapper.Map<Character>(dtoCharacter);
+            await _characterService.UpdateCharacterAsync(domainCharacter);
+
+            return Ok($"Updated Character with id: {id}");
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<CharacterReadDTO>> DeleteCharacter(int id) 
+        {
+            if (!_characterService.CharacterExists(id))
+                return NotFound($"Character with id: {id} was not found");
+
+            await _characterService.DeleteCharacterAsync(id);
+
+            return Ok($"Deleted Character with id: {id}");
         }
 
         [HttpPatch("{id}/movies")]
