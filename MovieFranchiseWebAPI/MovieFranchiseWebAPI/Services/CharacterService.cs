@@ -18,6 +18,11 @@ namespace MovieFranchiseWebAPI.Services
             _context = context;
         }
 
+        /// <summary>
+        /// Adds new Character to DbSet of Characters and updates the database. 
+        /// </summary>
+        /// <param name="character"></param>
+        /// <returns></returns>
         public async Task<Character> AddCharacterAsync(Character character)
         {
             _context.Characters.Add(character);
@@ -25,13 +30,19 @@ namespace MovieFranchiseWebAPI.Services
             return character;
         }
 
+        /// <summary>
+        /// Checks if id exists in DbSet of Characters
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public bool CharacterExists(int id)
         {
             return _context.Characters.Any(c => c.Id == id);
         }
 
         /// <summary>
-        /// uses FindAsync(id) on dBContext to find a charater, remove it, and update the database. 
+        /// Deletes a Character from DbSet of Characters and updates the database. 
+        /// Finds the Character by using FindAsync(id) on dBSet of Charaters.
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -43,7 +54,7 @@ namespace MovieFranchiseWebAPI.Services
         }
 
         /// <summary>
-        /// gets all character from dBContext while also including list of movie ids
+        /// Gets all characters from DbSet of Character while also including list of movie ids
         /// </summary>
         /// <returns>list of characters</returns>
         public async Task<IEnumerable<Character>> GetAllCharactersAsync()
@@ -54,7 +65,7 @@ namespace MovieFranchiseWebAPI.Services
         }
 
         /// <summary>
-        /// get specific chracter from dBContext while also including list of movie ids
+        /// Gets a specific chracter from DbSet of Characters while also including list of movie ids
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -64,7 +75,8 @@ namespace MovieFranchiseWebAPI.Services
         }
 
         /// <summary>
-        /// provides entry access to change tracking information and operations of a character 
+        /// Updates Character from DbSet of Characters.
+        /// Provides entry access to change tracking information and operations of the character 
         /// </summary>
         /// <param name="character"></param>
         /// <returns></returns>
@@ -75,7 +87,7 @@ namespace MovieFranchiseWebAPI.Services
         }
 
         /// <summary>
-        /// updates list of movie ids for a character by id
+        /// Updates Character from DbSet of Characters with list of Movie Ids.
         /// </summary>
         /// <param name="characterId"></param>
         /// <param name="movieIds"></param>
