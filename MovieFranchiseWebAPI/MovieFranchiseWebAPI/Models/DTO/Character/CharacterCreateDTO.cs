@@ -5,6 +5,9 @@ using System.Threading.Tasks;
 
 namespace MovieFranchiseWebAPI.Models.DTO.Character
 {
+    /// <summary>
+    /// DTO used when creating a new Character
+    /// </summary>
     public class CharacterCreateDTO 
     {
         public string FullName { get; set; }

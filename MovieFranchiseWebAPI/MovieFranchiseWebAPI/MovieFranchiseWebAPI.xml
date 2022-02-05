@@ -49,6 +49,21 @@
             <param name="movies"></param>
             <returns></returns>
         </member>
+        <member name="T:MovieFranchiseWebAPI.Models.DTO.Character.CharacterCreateDTO">
+            <summary>
+            DTO used when creating a new Character
+            </summary>
+        </member>
+        <member name="T:MovieFranchiseWebAPI.Models.DTO.Character.CharacterEditDTO">
+            <summary>
+            DTO used when updating an existing Character
+            </summary>
+        </member>
+        <member name="T:MovieFranchiseWebAPI.Models.DTO.Character.CharacterReadDTO">
+            <summary>
+            DTO used when fetching a Character
+            </summary>
+        </member>
         <member name="M:MovieFranchiseWebAPI.Services.CharacterService.DeleteCharacterAsync(System.Int32)">
             <summary>
             uses FindAsync(id) on dBContext to find a charater, remove it, and update the database. 
