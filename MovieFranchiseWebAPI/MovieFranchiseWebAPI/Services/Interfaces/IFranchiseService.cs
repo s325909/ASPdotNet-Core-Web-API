@@ -9,6 +9,8 @@ namespace MovieFranchiseWebAPI.Services
     public interface IFranchiseService
     {
         public Task<IEnumerable<Franchise>> GetAllFranchisesAsync();
+        public Task<IEnumerable<Character>> GetFranchiseCharactersAsync(int id);
+        public Task<IEnumerable<Movie>> GetFranchiseMoviesAsync(int id);  
         public Task<Franchise> GetSpecificFranchiseAsync(int id);
         public Task<Franchise> AddFranchiseAsync(Franchise franchise);
         public Task UpdateFranchiseAsync(Franchise franchise);

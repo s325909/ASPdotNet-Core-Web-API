@@ -269,6 +269,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:MovieFranchiseWebAPI.Services.FranchiseService.GetFranchiseCharactersAsync(System.Int32)">
+            <summary>
+            Get list of all characters related to a Movie in a Franchise by id from DbSet of Franchises
+            </summary>
+            <param name="franchiseId"></param>
+            <returns></returns>
+        </member>
         <member name="M:MovieFranchiseWebAPI.Services.FranchiseService.GetSpecificFranchiseAsync(System.Int32)">
             <summary>
             Gets a specific Franchise from DbSet of Franchises while also including list of Movie Ids

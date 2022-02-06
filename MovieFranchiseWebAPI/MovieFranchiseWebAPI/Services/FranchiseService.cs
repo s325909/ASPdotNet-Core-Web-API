@@ -65,6 +65,33 @@ namespace MovieFranchiseWebAPI.Services
         }
 
         /// <summary>
+        /// Get list of all characters related to a Movie in a Franchise by id from DbSet of Movies
+        /// </summary>
+        /// <param name="franchiseId"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<Character>> GetFranchiseCharactersAsync(int franchiseId)
+        {
+            var franchiseMovieCharacters = await _context.Movies
+                .Include(m => m.Characters)
+                .Where(m => m.FranchiseId == franchiseId)
+                .Select(m => m.Characters.ToList())
+                .FirstOrDefaultAsync();
+            return franchiseMovieCharacters;
+        }
+
+        /// <summary>
+        /// Get list of all movies related to a Franchise by id from DbSet of Franchises
+        /// </summary>
+        /// <param name="franchiseId"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<Movie>> GetFranchiseMoviesAsync(int franchiseId)
+        {
+            var franchise = await GetSpecificFranchiseAsync(franchiseId);
+
+            return franchise.Movies.ToList();
+        }
+
+        /// <summary>
         /// Gets a specific Franchise from DbSet of Franchises while also including list of Movie Ids
         /// </summary>
         /// <param name="id"></param>
