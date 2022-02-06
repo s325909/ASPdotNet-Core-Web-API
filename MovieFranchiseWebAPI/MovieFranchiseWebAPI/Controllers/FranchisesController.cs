@@ -53,14 +53,12 @@ namespace MovieFranchiseWebAPI.Controllers
 
             domainFranchise = await _franchiseService.AddFranchiseAsync(domainFranchise);
 
-            string uri = HttpContext.Request.Scheme + "://" + HttpContext.Request.Host
-                + HttpContext.Request.Path + "/" + domainFranchise.Id;
-
-            return Created(uri, _mapper.Map<FranchiseReadDTO>(domainFranchise));
+            return CreatedAtAction("GetFranchise", new { id = domainFranchise.Id },
+                _mapper.Map<FranchiseReadDTO>(domainFranchise));
         }
 
         /// <summary>
-        /// Fetches a specific Franchise from the database by their id 
+        /// Fetches a specific Franchise from the database by their Id 
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -70,13 +68,13 @@ namespace MovieFranchiseWebAPI.Controllers
             var franchise = await _franchiseService.GetSpecificFranchiseAsync(id);
 
             if (franchise == null)
-                return NotFound($"Franchise with id: {id} was not found");
+                return NotFound($"Franchise with Id: {id} was not found");
 
             return _mapper.Map<FranchiseReadDTO>(franchise); 
         }
 
         /// <summary>
-        /// Updates a Franchise in the database by their id; 
+        /// Updates a Franchise in the database by their Id; 
         /// must pass in an updated Franchise object
         /// </summary>
         /// <param name="id"></param>
@@ -86,19 +84,19 @@ namespace MovieFranchiseWebAPI.Controllers
         public async Task<IActionResult> PutFranchise(int id, FranchiseEditDTO dtoFranchise)
         {
             if (id != dtoFranchise.Id)
-                return BadRequest("Invalid FranchiseId");
+                return BadRequest("Invalid Franchise Id");
 
             if (!_franchiseService.FranchiseExists(id))
-                return NotFound($"Franchise with id: {id} was not found");
+                return NotFound($"Franchise with Id: {id} was not found");
 
             var domainFranchise = _mapper.Map<Franchise>(dtoFranchise);
             await _franchiseService.UpdateFranchiseAsync(domainFranchise);
 
-            return Ok($"Updated Franchise with id: {id}");
+            return Ok($"Updated Franchise with Id: {id}");
         }
 
         /// <summary>
-        /// Deletes a Franchise in the database by their id
+        /// Deletes a Franchise in the database by their Id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -117,7 +115,7 @@ namespace MovieFranchiseWebAPI.Controllers
         public async Task<ActionResult<IEnumerable<MovieReadDTO>>> GetFranchiseMovies(int id)
         {
             if (!_franchiseService.FranchiseExists(id))
-                return NotFound($"Franchise with id: {id} was not found");
+                return NotFound($"Franchise with Id: {id} was not found");
 
             return _mapper.Map<List<MovieReadDTO>>(
                 await _franchiseService.GetFranchiseMoviesAsync(id));
@@ -127,7 +125,7 @@ namespace MovieFranchiseWebAPI.Controllers
         public async Task<ActionResult<IEnumerable<CharacterReadDTO>>> GetFranchiseCharacters(int id)
         {
             if (!_franchiseService.FranchiseExists(id))
-                return NotFound($"Franchise with id: {id} was not found");
+                return NotFound($"Franchise with Id: {id} was not found");
 
             return _mapper.Map<List<CharacterReadDTO>>(
                 await _franchiseService.GetFranchiseCharactersAsync(id));

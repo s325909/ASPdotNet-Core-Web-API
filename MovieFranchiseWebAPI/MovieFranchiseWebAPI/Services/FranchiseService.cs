@@ -12,7 +12,7 @@ namespace MovieFranchiseWebAPI.Services
     {
         private readonly MovieFranchiseContext _context;
 
-        // MovieService depends on the DbContextc, thus freeing up the Controller for code implementation
+        // FranchiseService depends on the DbContextc, thus freeing up the Controller for code implementation
         public FranchiseService(MovieFranchiseContext context)
         {
             _context = context;
@@ -39,7 +39,15 @@ namespace MovieFranchiseWebAPI.Services
         public async Task DeleteFranchiseAsync(int id)
         {
             var franchise = await _context.Franchises.FindAsync(id);
+
+            var franchiseMovies = _context.Movies
+                .Where(m => m.FranchiseId == id);
+
+            foreach (var movie in franchiseMovies)
+                movie.FranchiseId = null;
+
             _context.Franchises.Remove(franchise);
+
             await _context.SaveChangesAsync();
         }
 
@@ -71,12 +79,31 @@ namespace MovieFranchiseWebAPI.Services
         /// <returns></returns>
         public async Task<IEnumerable<Character>> GetFranchiseCharactersAsync(int franchiseId)
         {
+            var franchiseMovies = await _context.Movies
+                .Include(m => m.Characters)
+                .Where(m => m.FranchiseId == franchiseId)
+                .ToListAsync();
+
+            var franciseCharacters = new List<Character>();
+            foreach (var movie in franchiseMovies)
+            {
+                foreach (var character in movie.Characters.ToList())
+                {
+                    if (!franciseCharacters.Contains(character))
+                        franciseCharacters.Add(character);
+                }
+            }
+
+            /**
             var franchiseMovieCharacters = await _context.Movies
                 .Include(m => m.Characters)
                 .Where(m => m.FranchiseId == franchiseId)
                 .Select(m => m.Characters.ToList())
                 .FirstOrDefaultAsync();
-            return franchiseMovieCharacters;
+            // return franchiseMovieCharacters;
+            **/
+
+            return franciseCharacters;
         }
 
         /// <summary>

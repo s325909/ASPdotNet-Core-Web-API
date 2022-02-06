@@ -43,7 +43,7 @@
         <member name="M:MovieFranchiseWebAPI.Controllers.CharactersController.PatchCharacterMovies(System.Int32,System.Collections.Generic.List{System.Int32})">
             <summary>
             Updates movies of a Character in the database by their id; 
-            must pass in an updated list of movie Ids
+            must pass in an updated list of movie Ids with related movies
             </summary>
             <param name="id"></param>
             <param name="movieIds"></param>
@@ -64,14 +64,14 @@
         </member>
         <member name="M:MovieFranchiseWebAPI.Controllers.FranchisesController.GetFranchise(System.Int32)">
             <summary>
-            Fetches a specific Franchise from the database by their id 
+            Fetches a specific Franchise from the database by their Id 
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:MovieFranchiseWebAPI.Controllers.FranchisesController.PutFranchise(System.Int32,MovieFranchiseWebAPI.Models.DTO.Franchise.FranchiseEditDTO)">
             <summary>
-            Updates a Franchise in the database by their id; 
+            Updates a Franchise in the database by their Id; 
             must pass in an updated Franchise object
             </summary>
             <param name="id"></param>
@@ -80,7 +80,7 @@
         </member>
         <member name="M:MovieFranchiseWebAPI.Controllers.FranchisesController.DeleteFranchise(System.Int32)">
             <summary>
-            Deletes a Franchise in the database by their id
+            Deletes a Franchise in the database by their Id
             </summary>
             <param name="id"></param>
             <returns></returns>
@@ -100,14 +100,14 @@
         </member>
         <member name="M:MovieFranchiseWebAPI.Controllers.MoviesController.GetMovie(System.Int32)">
             <summary>
-            Fetches a specific Movie from the database by their id 
+            Fetches a specific Movie from the database by their Id 
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
         <member name="M:MovieFranchiseWebAPI.Controllers.MoviesController.PutMovie(System.Int32,MovieFranchiseWebAPI.Models.DTO.Movie.MovieEditDTO)">
             <summary>
-            Updates a Movie in the database by their id; 
+            Updates a Movie in the database by their Id; 
             must pass in an updated Movie object
             </summary>
             <param name="id"></param>
@@ -116,9 +116,18 @@
         </member>
         <member name="M:MovieFranchiseWebAPI.Controllers.MoviesController.DeleteMovie(System.Int32)">
             <summary>
-            Deletes a Movie in the database by their id
+            Deletes a Movie in the database by their Id
             </summary>
             <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:MovieFranchiseWebAPI.Controllers.MoviesController.PatchMovieCharacters(System.Int32,System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Updates characters of a Movie in the database by their Id; 
+            must pass in an updated list of character Ids
+            </summary>
+            <param name="id"></param>
+            <param name="characterIds"></param>
             <returns></returns>
         </member>
         <member name="M:MovieFranchiseWebAPI.Controllers.MoviesController.GetMovieCharacters(System.Int32)">
@@ -126,15 +135,6 @@
             Fetches all Characters related to a Movie by Id from the database
             </summary>
             <param name="id"></param>
-            <returns></returns>
-        </member>
-        <member name="M:MovieFranchiseWebAPI.Controllers.MoviesController.PatchMovieCharacters(System.Int32,System.Collections.Generic.List{System.Int32})">
-            <summary>
-            Updates characters of a Movie in the database by their id; 
-            must pass in an updated list of character Ids
-            </summary>
-            <param name="id"></param>
-            <param name="characterIds"></param>
             <returns></returns>
         </member>
         <member name="M:MovieFranchiseWebAPI.Controllers.MoviesController.PatchMovieFranchise(System.Int32,System.Int32)">

@@ -29,13 +29,13 @@ namespace MovieFranchiseWebAPI.Models
             new Movie()
             {
                 Id = 1,
-                FranchiseId = 1,
-                Tittle = "John Wick: Chapter 4",
+                FranchiseId = 2,
+                Tittle = "Captain America: The First Avenger",
                 Genre = "Action, Crime, Drama, Thriller",
-                ReleaseYear = 2023,
-                Director = "Derek Kolstad",
-                PictureURL = "https://filmyhotspot.com/wp-content/uploads/2020/12/39e611e5-870c-4c6d-97a1-e7c9ee51a97b.jpg",
-                TrailerURL = "https://www.youtube.com/watch?v=gy31U2bvVGU"
+                ReleaseYear = 2011,
+                Director = "Joe Johnston",
+                PictureURL = "https://m.media-amazon.com/images/M/MV5BMTYzOTc2NzU3N15BMl5BanBnXkFtZTcwNjY3MDE3NQ@@._V1_FMjpg_UX1000_.jpg",
+                TrailerURL = "https://www.youtube.com/watch?v=JerVrbLldXw"
             },
             new Movie()
             {
@@ -44,7 +44,7 @@ namespace MovieFranchiseWebAPI.Models
                 Tittle = "Captain America: The Winter Soldier",
                 Genre = "Action, Drama, Romace",
                 ReleaseYear = 2014,
-                Director = "Russo",
+                Director = "Anthony Russo, Joe Russo",
                 PictureURL = "https://m.media-amazon.com/images/M/MV5BMzA2NDkwODAwM15BMl5BanBnXkFtZTgwODk5MTgzMTE@._V1_.jpg",
                 TrailerURL = "https://www.youtube.com/watch?v=tbayiPxkUMM"
             },
@@ -55,7 +55,7 @@ namespace MovieFranchiseWebAPI.Models
                 Tittle = "Captain America: Civil War",
                 Genre = "Action, Drama",
                 ReleaseYear = 2016,
-                Director = "Russo",
+                Director = "Anthony Russo, Joe Russo",
                 PictureURL = "https://m.media-amazon.com/images/M/MV5BMzA2NDkwODAwM15BMl5BanBnXkFtZTgwODk5MTgzMTE@._V1_.jpg",
                 TrailerURL = "https://www.youtube.com/watch?v=tbayiPxkUMM"
             },
@@ -66,10 +66,54 @@ namespace MovieFranchiseWebAPI.Models
                 Tittle = "Avengers: Infinity War",
                 Genre = "Action, Comedy, Drama, Romance",
                 ReleaseYear = 2018,
-                Director = "Russo",
+                Director = "Anthony Russo, Joe Russo",
                 PictureURL = "https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_.jpg",
                 TrailerURL = "https://www.youtube.com/watch?v=QwievZ1Tx-8"
-            }
+            },
+            new Movie()
+            {
+                Id = 5,
+                FranchiseId = 1,
+                Tittle = "John Wick: Chapter 4",
+                Genre = "Action, Crime, Drama, Thriller",
+                ReleaseYear = 2023,
+                Director = "Chad Stahelski",
+                PictureURL = "https://filmyhotspot.com/wp-content/uploads/2020/12/39e611e5-870c-4c6d-97a1-e7c9ee51a97b.jpg",
+                TrailerURL = "https://www.youtube.com/watch?v=gy31U2bvVGU"
+            },
+            new Movie()
+            {
+                Id = 6,
+                FranchiseId = 1,
+                Tittle = "John Wick: Chapter 3",
+                Genre = "Action, Mystery, thriller",
+                ReleaseYear = 2019,
+                Director = "Chad Stahelski",
+                PictureURL = "https://www.the-rampage.org/wp-content/uploads/2019/06/268x0w.png",
+                TrailerURL = "https://www.youtube.com/watch?v=M7XM597XO94"
+            },
+            new Movie()
+            {
+                Id = 7,
+                FranchiseId = 1,
+                Tittle = "John Wick: Chapter 2",
+                Genre = "Action, Drama",
+                ReleaseYear = 2017,
+                Director = "Chad Stahelski",
+                PictureURL = "https://m.media-amazon.com/images/M/MV5BMjE2NDkxNTY2M15BMl5BanBnXkFtZTgwMDc2NzE0MTI@._V1_.jpg",
+                TrailerURL = "https://www.youtube.com/watch?v=XGk2EfbD_Ps"
+            },
+            new Movie()
+            {
+                Id = 8,
+                FranchiseId = 1,
+                Tittle = "John Wick (2014)",
+                Genre = "Action, Crime, Drama, Thriller, Tragedy",
+                ReleaseYear = 2014,
+                Director = "Chad Stahelski",
+                PictureURL = "https://m.media-amazon.com/images/M/MV5BMTU2NjA1ODgzMF5BMl5BanBnXkFtZTgwMTM2MTI4MjE@._V1_.jpg",
+                TrailerURL = "https://www.youtube.com/watch?v=2AUmvWm5ZDQ"
+            },
         };
 
         public readonly List<Character> Characters = new()
@@ -110,7 +154,7 @@ namespace MovieFranchiseWebAPI.Models
             {
                 Id = 5,
                 FullName = "Bruce Banner",
-                Alias = "Hulk",
+                Alias = "The Incredible Hulk",
                 Gender = "Male",
                 PictureURL = "https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/Mark_Ruffalo_as_%22Professor_Hulk%22.jpeg/200px-Mark_Ruffalo_as_%22Professor_Hulk%22.jpeg",
             },

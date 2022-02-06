@@ -35,7 +35,7 @@ namespace MovieFranchiseWebAPI.Models
             for (int i = 0; i < mockData.Characters.Count; i++)
                 modelBuilder.Entity<Character>().HasData(mockData.Characters[i]);
 
-            // seed m2m movie-character by accessing defined linking table 
+            // seed m2m Movie-Character by accessing defined linking table with FK Ids
             modelBuilder.Entity<Movie>()
                 .HasMany(m => m.Characters)
                 .WithMany(c => c.Movies)
@@ -47,22 +47,27 @@ namespace MovieFranchiseWebAPI.Models
                     {
                         je.HasKey("MovieId", "CharacterId");
                         je.HasData(
-                            // John Wick 1 Characters
-                            new { MovieId = 1, CharacterId = 1 },
-                            // Captain America 2 Characters
+                            // Captain America 1 --> Characters
+                            new { MovieId = 1, CharacterId = 3 },
+                            // Captain America 2 --> Characters
                             new { MovieId = 2, CharacterId = 3 },
                             new { MovieId = 2, CharacterId = 4 },
-                            // Captain America 3 Chracters
+                            // Captain America 3 --> Chracters
                             new { MovieId = 3, CharacterId = 2 },
                             new { MovieId = 3, CharacterId = 3 },
                             new { MovieId = 3, CharacterId = 4 },
                             new { MovieId = 3, CharacterId = 6 },
-                            // Avangers Infinity War Characters
+                            // Avangers Infinity War --> Characters
                             new { MovieId = 4, CharacterId = 2 },
                             new { MovieId = 4, CharacterId = 3 },
                             new { MovieId = 4, CharacterId = 4 },
                             new { MovieId = 4, CharacterId = 5 },
-                            new { MovieId = 4, CharacterId = 6 }
+                            new { MovieId = 4, CharacterId = 6 },
+                            // John Wick Chapter 1-4 --> Characters
+                            new { MovieId = 5, CharacterId = 1 },
+                            new { MovieId = 6, CharacterId = 1 },
+                            new { MovieId = 7, CharacterId = 1 },
+                            new { MovieId = 8, CharacterId = 1 }
                         );
                     }
                 );
