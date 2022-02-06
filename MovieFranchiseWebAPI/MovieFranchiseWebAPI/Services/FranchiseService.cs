@@ -79,12 +79,31 @@ namespace MovieFranchiseWebAPI.Services
         /// <returns></returns>
         public async Task<IEnumerable<Character>> GetFranchiseCharactersAsync(int franchiseId)
         {
+            var franchiseMovies = await _context.Movies
+                .Include(m => m.Characters)
+                .Where(m => m.FranchiseId == franchiseId)
+                .ToListAsync();
+
+            var franciseCharacters = new List<Character>();
+            foreach (var movie in franchiseMovies)
+            {
+                foreach (var character in movie.Characters.ToList())
+                {
+                    if (!franciseCharacters.Contains(character))
+                        franciseCharacters.Add(character);
+                }
+            }
+
+            /**
             var franchiseMovieCharacters = await _context.Movies
                 .Include(m => m.Characters)
                 .Where(m => m.FranchiseId == franchiseId)
                 .Select(m => m.Characters.ToList())
                 .FirstOrDefaultAsync();
-            return franchiseMovieCharacters;
+            // return franchiseMovieCharacters;
+            **/
+
+            return franciseCharacters;
         }
 
         /// <summary>
