@@ -38,7 +38,7 @@ namespace MovieFranchiseWebAPI
 
             // inject DbContext to services at startup with connectionString (defined in appsettings.json)
             services.AddDbContextPool<MovieFranchiseContext>(options => options.UseSqlServer(
-                Configuration.GetConnectionString("MovieFranchiseContextConnectionString")));
+                Configuration.GetConnectionString("MovieFranchiseDb")));
             services.AddScoped<ICharacterService, CharacterService>();
             services.AddScoped<IMovieService, MovieService>();
             services.AddScoped<IFranchiseService, FranchiseService>();
