@@ -39,7 +39,15 @@ namespace MovieFranchiseWebAPI.Services
         public async Task DeleteFranchiseAsync(int id)
         {
             var franchise = await _context.Franchises.FindAsync(id);
+
+            var franchiseMovies = _context.Movies
+                .Where(m => m.FranchiseId == id);
+
+            foreach (var movie in franchiseMovies)
+                movie.FranchiseId = null;
+
             _context.Franchises.Remove(franchise);
+
             await _context.SaveChangesAsync();
         }
 
