@@ -35,7 +35,7 @@ namespace MovieFranchiseWebAPI.Models
             for (int i = 0; i < mockData.Characters.Count; i++)
                 modelBuilder.Entity<Character>().HasData(mockData.Characters[i]);
 
-            // seed m2m movie-character by accessing defined linking table 
+            // seed m2m Movie-Character by accessing defined linking table with FK Ids
             modelBuilder.Entity<Movie>()
                 .HasMany(m => m.Characters)
                 .WithMany(c => c.Movies)
@@ -49,10 +49,10 @@ namespace MovieFranchiseWebAPI.Models
                         je.HasData(
                             // John Wick 1 Characters
                             new { MovieId = 1, CharacterId = 1 },
-                            // Captain America 2 Characters
+                            // Captain America TWS Characters
                             new { MovieId = 2, CharacterId = 3 },
                             new { MovieId = 2, CharacterId = 4 },
-                            // Captain America 3 Chracters
+                            // Captain America CW Chracters
                             new { MovieId = 3, CharacterId = 2 },
                             new { MovieId = 3, CharacterId = 3 },
                             new { MovieId = 3, CharacterId = 4 },

@@ -52,14 +52,12 @@ namespace MovieFranchiseWebAPI.Controllers
 
             domainMovie = await _movieService.AddMovieAsync(domainMovie);
 
-            string uri = HttpContext.Request.Scheme + "://" + HttpContext.Request.Host
-                + HttpContext.Request.Path + "/" + domainMovie.Id;
-
-            return Created(uri, _mapper.Map<MovieReadDTO>(domainMovie));
+            return CreatedAtAction("GetMovie", new { id = domainMovie.Id },
+                _mapper.Map<MovieReadDTO>(domainMovie));
         }
 
         /// <summary>
-        /// Fetches a specific Movie from the database by their id 
+        /// Fetches a specific Movie from the database by their Id 
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -75,7 +73,7 @@ namespace MovieFranchiseWebAPI.Controllers
         }
 
         /// <summary>
-        /// Updates a Movie in the database by their id; 
+        /// Updates a Movie in the database by their Id; 
         /// must pass in an updated Movie object
         /// </summary>
         /// <param name="id"></param>
@@ -85,19 +83,19 @@ namespace MovieFranchiseWebAPI.Controllers
         public async Task<IActionResult> PutMovie(int id, MovieEditDTO dtoMovie)
         {
             if (id != dtoMovie.Id)
-                return BadRequest("Invalid MovieId");
+                return BadRequest("Invalid Movie Id");
 
             if (!_movieService.MovieExists(id))
-                return NotFound($"Movie with id: {id} was not found");
+                return NotFound($"Movie with Id: {id} was not found");
 
             var domainMovie = _mapper.Map<Movie>(dtoMovie);
             await _movieService.UpdateMovieAsync(domainMovie);
 
-            return Ok($"Updated Movie with id: {id}");
+            return Ok($"Updated Movie with Id: {id}");
         }
 
         /// <summary>
-        /// Deletes a Movie in the database by their id
+        /// Deletes a Movie in the database by their Id
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -105,31 +103,15 @@ namespace MovieFranchiseWebAPI.Controllers
         public async Task<ActionResult<MovieReadDTO>> DeleteMovie(int id)
         {
             if (!_movieService.MovieExists(id))
-                return NotFound($"Movie with id: {id} was not found");
+                return NotFound($"Movie with Id: {id} was not found");
 
             await _movieService.DeleteMovieAsync(id);
 
-            return Ok($"Deleted Movie with id: {id}");
-        }
-
-
-        /// <summary>
-        /// Fetches all Characters related to a Movie by Id from the database
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        [HttpGet("{id}/characters")]
-        public async Task<ActionResult<IEnumerable<CharacterReadDTO>>> GetMovieCharacters(int id)
-        {
-            if (!_movieService.MovieExists(id))
-                return NotFound($"Movie with id: {id} was not found");
-
-            return _mapper.Map<List<CharacterReadDTO>>(
-                await _movieService.GetMovieCharactersAsync(id));
+            return Ok($"Deleted Movie with Id: {id}");
         }
 
         /// <summary>
-        /// Updates characters of a Movie in the database by their id; 
+        /// Updates characters of a Movie in the database by their Id; 
         /// must pass in an updated list of character Ids
         /// </summary>
         /// <param name="id"></param>
@@ -139,7 +121,7 @@ namespace MovieFranchiseWebAPI.Controllers
         public async Task<IActionResult> PatchMovieCharacters(int id, List<int> characterIds) 
         {
             if (!_movieService.MovieExists(id))
-                return NotFound($"Movie with id: {id} was not found");
+                return NotFound($"Movie with Id: {id} was not found");
             try
             {
                 await _movieService.UpdateMovieChractersAsync(id, characterIds);
@@ -150,7 +132,22 @@ namespace MovieFranchiseWebAPI.Controllers
             }
             string characters = " ";
             characterIds.ForEach(m => characters += $"{m}, ");
-            return Ok($"Patch-updated Character(s) [{characters}] for Movie with id: {id}");
+            return Ok($"Patch-Updated Character(s) [{characters}] for Movie with Id: {id}");
+        }
+
+        /// <summary>
+        /// Fetches all Characters related to a Movie by Id from the database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}/characters")]
+        public async Task<ActionResult<IEnumerable<CharacterReadDTO>>> GetMovieCharacters(int id)
+        {
+            if (!_movieService.MovieExists(id))
+                return NotFound($"Movie with Id: {id} was not found");
+
+            return _mapper.Map<List<CharacterReadDTO>>(
+                await _movieService.GetMovieCharactersAsync(id));
         }
 
         /// <summary>
@@ -163,7 +160,7 @@ namespace MovieFranchiseWebAPI.Controllers
         public async Task<IActionResult> PatchMovieFranchise(int id, int franchiseId) 
         {
             if (!_movieService.MovieExists(id))
-                return NotFound($"Movie with id: {id} was not found");
+                return NotFound($"Movie with Id: {id} was not found");
             try
             {
                 await _movieService.UpdateMovieFranchiseAsync(id, franchiseId);
@@ -172,7 +169,7 @@ namespace MovieFranchiseWebAPI.Controllers
             {
                 return BadRequest(e.Message);
             }
-            return Ok($"Patch-updated Franchise [{franchiseId}] for Movie with id: {id}");
+            return Ok($"Patch-Updated Franchise [{franchiseId}] for Movie with Id: {id}");
         }
     }
 }

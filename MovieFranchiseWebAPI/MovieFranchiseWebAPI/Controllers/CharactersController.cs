@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using MovieFranchiseWebAPI.Models;
 using MovieFranchiseWebAPI.Models.Domain;
 using MovieFranchiseWebAPI.Models.DTO.Character;
 using MovieFranchiseWebAPI.Services;
@@ -26,7 +24,6 @@ namespace MovieFranchiseWebAPI.Controllers
 
         public CharactersController(IMapper mapper, ICharacterService characterService)
         {
-            //_context = context;
             _mapper = mapper;
             _characterService = characterService;
         }
@@ -54,10 +51,8 @@ namespace MovieFranchiseWebAPI.Controllers
 
             domainCharacter = await _characterService.AddCharacterAsync(domainCharacter);
             
-            string uri = HttpContext.Request.Scheme + "://" + HttpContext.Request.Host
-                + HttpContext.Request.Path + "/" + domainCharacter.Id;
-
-            return Created(uri, _mapper.Map<CharacterReadDTO>(domainCharacter));
+            return CreatedAtAction("GetCharacter", new { id = domainCharacter.Id },
+                _mapper.Map<CharacterReadDTO>(domainCharacter));
         }
 
         /// <summary>
@@ -71,7 +66,7 @@ namespace MovieFranchiseWebAPI.Controllers
             var character = await _characterService.GetSpecificCharacterAsync(id);
 
             if (character == null)
-                return NotFound($"Character with id: {id} was not found");
+                return NotFound($"Character with Id: {id} was not found");
 
             return _mapper.Map<CharacterReadDTO>(character);
         }
@@ -87,15 +82,15 @@ namespace MovieFranchiseWebAPI.Controllers
         public async Task<IActionResult> PutCharacter(int id, CharacterEditDTO dtoCharacter)
         {
             if (id != dtoCharacter.Id)
-                return BadRequest("Invalid CharacterId");
+                return BadRequest("Invalid Character Id");
 
             if (!_characterService.CharacterExists(id))
-                return NotFound($"Character with id: {id} was not found");
+                return NotFound($"Character with Id: {id} was not found");
 
             var domainCharacter = _mapper.Map<Character>(dtoCharacter);
             await _characterService.UpdateCharacterAsync(domainCharacter);
 
-            return Ok($"Updated Character with id: {id}");
+            return Ok($"Updated Character with Id: {id}");
         }
 
         /// <summary>
@@ -107,16 +102,16 @@ namespace MovieFranchiseWebAPI.Controllers
         public async Task<ActionResult<CharacterReadDTO>> DeleteCharacter(int id) 
         {
             if (!_characterService.CharacterExists(id))
-                return NotFound($"Character with id: {id} was not found");
+                return NotFound($"Character with Id: {id} was not found");
 
             await _characterService.DeleteCharacterAsync(id);
 
-            return Ok($"Deleted Character with id: {id}");
+            return Ok($"Deleted Character with Id: {id}");
         }
 
         /// <summary>
         /// Updates movies of a Character in the database by their id; 
-        /// must pass in an updated list of movie Ids
+        /// must pass in an updated list of movie Ids with related movies
         /// </summary>
         /// <param name="id"></param>
         /// <param name="movieIds"></param>
@@ -125,7 +120,7 @@ namespace MovieFranchiseWebAPI.Controllers
         public async Task<IActionResult> PatchCharacterMovies(int id, List<int> movieIds)
         {
             if (!_characterService.CharacterExists(id))
-                return NotFound($"Character with id: {id} was not found");
+                return NotFound($"Character with Id: {id} was not found");
             try
             {
                 await _characterService.UpdateCharacterMoviesAsync(id, movieIds);
@@ -136,7 +131,7 @@ namespace MovieFranchiseWebAPI.Controllers
             }
             string movies = " ";
             movieIds.ForEach(m => movies += $"{m}, ");
-            return Ok($"Patch-updated Movie(s) [{movies}] for Character with id: {id}");
+            return Ok($"Patch-Updated Movie(s) [{movies}] for Character with Id: {id}");
         }
     }
 }

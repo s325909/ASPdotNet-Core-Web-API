@@ -12,7 +12,7 @@ namespace MovieFranchiseWebAPI.Services
     {
         private readonly MovieFranchiseContext _context;
 
-        // MovieService depends on the DbContextc, thus freeing up the Controller for code implementation
+        // FranchiseService depends on the DbContextc, thus freeing up the Controller for code implementation
         public FranchiseService(MovieFranchiseContext context)
         {
             _context = context;
