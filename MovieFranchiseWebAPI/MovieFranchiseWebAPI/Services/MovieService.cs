@@ -55,6 +55,18 @@ namespace MovieFranchiseWebAPI.Services
         }
 
         /// <summary>
+        /// Get list of all characters related to a Movie by id from DbSet of Movies including list of Character Ids
+        /// </summary>
+        /// <param name="movieId"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<Character>> GetMovieCharactersAsync(int movieId)
+        {
+            var movie = await GetSpecificMovieAsync(movieId);
+
+            return movie.Characters.ToList();
+        }
+
+        /// <summary>
         /// Gets a specific Movie from DbSet of Characters while also including list of Character Ids
         /// </summary>
         /// <param name="id"></param>
@@ -96,7 +108,7 @@ namespace MovieFranchiseWebAPI.Services
         {
             var movie = await GetMovieAsync(movieId); 
 
-            movie.Characters = await GetMovieCharactersAsync(characterIds);
+            movie.Characters = await GetCharactersAsync(characterIds);
 
             await _context.SaveChangesAsync();
         }
@@ -118,7 +130,7 @@ namespace MovieFranchiseWebAPI.Services
                    .SingleOrDefaultAsync(m => m.Id == movieId);
         }
 
-        private async Task<List<Character>> GetMovieCharactersAsync(List<int> characterIds)
+        private async Task<List<Character>> GetCharactersAsync(List<int> characterIds)
         {
             var characters = new List<Character>();
             foreach (int characterId in characterIds)

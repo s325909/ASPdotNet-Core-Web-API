@@ -2,7 +2,9 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MovieFranchiseWebAPI.Models.Domain;
+using MovieFranchiseWebAPI.Models.DTO.Character;
 using MovieFranchiseWebAPI.Models.DTO.Franchise;
+using MovieFranchiseWebAPI.Models.DTO.Movie;
 using MovieFranchiseWebAPI.Services;
 using System;
 using System.Collections.Generic;
@@ -109,6 +111,26 @@ namespace MovieFranchiseWebAPI.Controllers
             await _franchiseService.DeleteFranchiseAsync(id);
 
             return Ok($"Deleted Franchise with id: {id}");
+        }
+
+        [HttpGet("{id}/movies")]
+        public async Task<ActionResult<IEnumerable<MovieReadDTO>>> GetFranchiseMovies(int id)
+        {
+            if (!_franchiseService.FranchiseExists(id))
+                return NotFound($"Franchise with id: {id} was not found");
+
+            return _mapper.Map<List<MovieReadDTO>>(
+                await _franchiseService.GetFranchiseMoviesAsync(id));
+        }
+
+        [HttpGet("{id}/characters")]
+        public async Task<ActionResult<IEnumerable<CharacterReadDTO>>> GetFranchiseCharacters(int id)
+        {
+            if (!_franchiseService.FranchiseExists(id))
+                return NotFound($"Franchise with id: {id} was not found");
+
+            return _mapper.Map<List<CharacterReadDTO>>(
+                await _franchiseService.GetFranchiseCharactersAsync(id));
         }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MovieFranchiseWebAPI.Models.Domain;
+using MovieFranchiseWebAPI.Models.DTO.Character;
 using MovieFranchiseWebAPI.Models.DTO.Movie;
 using MovieFranchiseWebAPI.Services;
 using System;
@@ -111,6 +112,22 @@ namespace MovieFranchiseWebAPI.Controllers
             return Ok($"Deleted Movie with id: {id}");
         }
 
+
+        /// <summary>
+        /// Fetches all Characters related to a Movie by Id from the database
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet("{id}/characters")]
+        public async Task<ActionResult<IEnumerable<CharacterReadDTO>>> GetMovieCharacters(int id)
+        {
+            if (!_movieService.MovieExists(id))
+                return NotFound($"Movie with id: {id} was not found");
+
+            return _mapper.Map<List<CharacterReadDTO>>(
+                await _movieService.GetMovieCharactersAsync(id));
+        }
+
         /// <summary>
         /// Updates characters of a Movie in the database by their id; 
         /// must pass in an updated list of character Ids
@@ -119,7 +136,7 @@ namespace MovieFranchiseWebAPI.Controllers
         /// <param name="characterIds"></param>
         /// <returns></returns>
         [HttpPatch("{id}/characters")]
-        public async Task<IActionResult> PatchCharacterMovies(int id, List<int> characterIds)
+        public async Task<IActionResult> PatchMovieCharacters(int id, List<int> characterIds) 
         {
             if (!_movieService.MovieExists(id))
                 return NotFound($"Movie with id: {id} was not found");
@@ -143,7 +160,7 @@ namespace MovieFranchiseWebAPI.Controllers
         /// <param name="franchiseId"></param>
         /// <returns></returns>
         [HttpPatch("{id}/franchise")]
-        public async Task<IActionResult> PatchCharacterMovies(int id, int franchiseId)
+        public async Task<IActionResult> PatchMovieFranchise(int id, int franchiseId) 
         {
             if (!_movieService.MovieExists(id))
                 return NotFound($"Movie with id: {id} was not found");
