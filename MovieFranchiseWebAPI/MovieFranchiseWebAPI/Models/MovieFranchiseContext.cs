@@ -47,22 +47,27 @@ namespace MovieFranchiseWebAPI.Models
                     {
                         je.HasKey("MovieId", "CharacterId");
                         je.HasData(
-                            // John Wick 1 Characters
-                            new { MovieId = 1, CharacterId = 1 },
-                            // Captain America TWS Characters
+                            // Captain America 1 --> Characters
+                            new { MovieId = 1, CharacterId = 3 },
+                            // Captain America 2 --> Characters
                             new { MovieId = 2, CharacterId = 3 },
                             new { MovieId = 2, CharacterId = 4 },
-                            // Captain America CW Chracters
+                            // Captain America 3 --> Chracters
                             new { MovieId = 3, CharacterId = 2 },
                             new { MovieId = 3, CharacterId = 3 },
                             new { MovieId = 3, CharacterId = 4 },
                             new { MovieId = 3, CharacterId = 6 },
-                            // Avangers Infinity War Characters
+                            // Avangers Infinity War --> Characters
                             new { MovieId = 4, CharacterId = 2 },
                             new { MovieId = 4, CharacterId = 3 },
                             new { MovieId = 4, CharacterId = 4 },
                             new { MovieId = 4, CharacterId = 5 },
-                            new { MovieId = 4, CharacterId = 6 }
+                            new { MovieId = 4, CharacterId = 6 },
+                            // John Wick Chapter 1-4 --> Characters
+                            new { MovieId = 5, CharacterId = 1 },
+                            new { MovieId = 6, CharacterId = 1 },
+                            new { MovieId = 7, CharacterId = 1 },
+                            new { MovieId = 8, CharacterId = 1 }
                         );
                     }
                 );
